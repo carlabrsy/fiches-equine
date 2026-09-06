@@ -247,6 +247,74 @@ mark { background: #f9e79f; color: #1a1a1a; padding: 0 2px; border-radius: 2px; 
 .search-result .fiche-name { font-size: 0.72rem; color: var(--accent); font-weight: 600; }
 .no-results { text-align: center; padding: 40px 16px; color: var(--text-light); }
 .count { font-size: 0.72rem; background: var(--accent-light); color: var(--accent); padding: 1px 6px; border-radius: 8px; margin-left: 4px; }
+
+/* Bottom nav */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--bg-card); border-top: 1px solid var(--border);
+  display: flex; justify-content: center;
+  padding: 4px 0 max(env(safe-area-inset-bottom,0px),8px);
+  z-index: 200;
+}
+.nav-btn {
+  flex: 1; max-width: 140px;
+  background: none; border: none; color: var(--text-light);
+  font-family: inherit; font-size: 0.68rem; font-weight: 500;
+  padding: 6px 0 2px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  transition: color .15s;
+}
+.nav-btn.active { color: var(--accent); }
+.nav-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* Pharmaco page */
+.pharma-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg); padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.pharma-header h1 { font-size: 1.3rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+.drug-cat { margin: 12px 16px 6px; }
+.drug-cat h3 { font-size: 0.95rem; margin: 0 0 8px; color: var(--accent); }
+.drug-row {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 6px;
+}
+.drug-row .drug-name { font-weight: 700; font-size: 0.9rem; margin: 0 0 4px; }
+.drug-row .drug-info { font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+.drug-row .drug-dose { font-weight: 600; color: var(--accent); }
+
+/* Calc page */
+.calc-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg); padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.calc-header h1 { font-size: 1.3rem; margin: 0; letter-spacing: -0.02em; }
+.calc-form { padding: 16px; }
+.calc-form label { display: block; font-size: 0.85rem; font-weight: 600; margin: 12px 0 4px; color: var(--text-muted); }
+.calc-form select, .calc-form input[type="number"] {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg-card); color: var(--text);
+  font: inherit; font-size: 0.9rem;
+}
+.calc-form select:focus, .calc-form input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.calc-result {
+  margin-top: 16px; padding: 16px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.calc-result .big { font-size: 1.6rem; font-weight: 700; color: var(--accent); font-family: 'Fraunces', Georgia, serif; }
+.calc-result .detail { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+.calc-result .warn { font-size: 0.8rem; color: var(--danger); margin-top: 8px; font-weight: 500; }
+.calc-drug-info {
+  margin-top: 12px; padding: 12px;
+  background: var(--accent-light); border-radius: 8px;
+  font-size: 0.82rem;
+}
 </style>
 </head>
 <body>
@@ -264,6 +332,7 @@ mark { background: #f9e79f; color: #1a1a1a; padding: 0 2px; border-radius: 2px; 
 
 <!-- App (hidden until auth) -->
 <div id="app">
+  <div class="page active" id="pageFiches">
   <div class="app-header">
     <h1>Fiches Equine ENVT</h1>
     <div class="search-wrap">
@@ -275,6 +344,44 @@ mark { background: #f9e79f; color: #1a1a1a; padding: 0 2px; border-radius: 2px; 
   <div class="fiche-grid" id="ficheGrid"></div>
   <div class="search-results" id="searchResults" hidden></div>
   <div id="ficheViews"></div>
+  </div><!-- /pageFiches -->
+
+  <div class="page" id="pagePharmaco">
+    <div class="pharma-header">
+      <h1>Pharmacologie</h1>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="pharmaSearch" placeholder="Rechercher un medicament...">
+      </div>
+    </div>
+    <div id="pharmaList"></div>
+  </div>
+
+  <div class="page" id="pageCalc">
+    <div class="calc-header"><h1>Calculateur de dose</h1></div>
+    <div class="calc-form">
+      <label>Medicament</label>
+      <select id="calcDrug"><option value="">-- Choisir --</option></select>
+      <label>Poids du cheval (kg)</label>
+      <input type="number" id="calcWeight" value="500" min="50" max="1200" step="10">
+      <div id="calcResult"></div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="switchPage('pageFiches',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Fiches
+    </button>
+    <button class="nav-btn" onclick="switchPage('pagePharmaco',this)">
+      <svg viewBox="0 0 24 24"><path d="M9 3h6v4H9z"/><path d="M8 7h8v2a4 4 0 01-1.17 2.83L13 13.66V17a2 2 0 01-2 2h0a2 2 0 01-2-2v-3.34l-1.83-1.83A4 4 0 016 9V7z"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+      Pharmaco
+    </button>
+    <button class="nav-btn" onclick="switchPage('pageCalc',this)">
+      <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><circle cx="9" cy="11" r="1" fill="currentColor"/><circle cx="15" cy="11" r="1" fill="currentColor"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="11" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="9" cy="19" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/><circle cx="15" cy="19" r="1" fill="currentColor"/></svg>
+      Calcul dose
+    </button>
+  </div>
 </div>
 
 <script>
@@ -974,6 +1081,133 @@ searchInput.addEventListener('input',function(){
 });
 
 showCat(CATS[0]);
+
+// --- Page navigation ---
+function switchPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// --- DRUGS database ---
+const DRUGS=[
+{cat:"Anti-inflammatoires",name:"Flunixine meglumine",dmin:1.1,dmax:1.1,unit:"mg/kg",route:"IV (PO possible)",freq:"q12-24h",conc:50,pres:"Finadyne 50 mg/mL",notes:"AINS de reference colique. Max 5j."},
+{cat:"Anti-inflammatoires",name:"Phenylbutazone",dmin:2.2,dmax:4.4,unit:"mg/kg",route:"IV, PO",freq:"q12-24h",conc:200,pres:"200 mg/mL IV ; cp 1g PO",notes:"Dose attaque 4.4, entretien 2.2. Nephrotoxicite."},
+{cat:"Anti-inflammatoires",name:"Meloxicam",dmin:0.6,dmax:0.6,unit:"mg/kg",route:"IV, PO",freq:"q24h",conc:20,pres:"Metacam 20 mg/mL IV ; 15 mg/mL PO",notes:"AMM equin. Moins nephrotoxique."},
+{cat:"Anti-inflammatoires",name:"Dexamethasone",dmin:0.05,dmax:0.1,unit:"mg/kg",route:"IV, IM",freq:"q24h",conc:2,pres:"2 mg/mL",notes:"Corticoide. Attention fourbure."},
+{cat:"Anti-inflammatoires",name:"Prednisolone",dmin:0.5,dmax:1.0,unit:"mg/kg",route:"PO",freq:"q24h puis degressif",conc:0,pres:"Comprimes",notes:"Usage systemique prolonge."},
+{cat:"Sedation / Analgesie",name:"Detomidine",dmin:0.01,dmax:0.02,unit:"mg/kg",route:"IV",freq:"",conc:10,pres:"Domosedan 10 mg/mL",notes:"Alpha-2. Reversal: atipamezole."},
+{cat:"Sedation / Analgesie",name:"Romifidine",dmin:0.04,dmax:0.08,unit:"mg/kg",route:"IV",freq:"",conc:10,pres:"Sedivet 10 mg/mL",notes:"Alpha-2. + longue duree, - ataxie."},
+{cat:"Sedation / Analgesie",name:"Xylazine",dmin:0.5,dmax:1.1,unit:"mg/kg",route:"IV",freq:"",conc:20,pres:"Rompun 20 mg/mL",notes:"Alpha-2. Courte duree. Reversal: atipamezole."},
+{cat:"Sedation / Analgesie",name:"Butorphanol",dmin:0.02,dmax:0.04,unit:"mg/kg",route:"IV",freq:"",conc:10,pres:"Torbugesic 10 mg/mL",notes:"Agoniste-antagoniste opiode. Potentialise alpha-2."},
+{cat:"Sedation / Analgesie",name:"Morphine",dmin:0.1,dmax:0.2,unit:"mg/kg",route:"IV lente",freq:"",conc:10,pres:"10 mg/mL",notes:"Opiode pur. Excitation si IV rapide."},
+{cat:"Sedation / Analgesie",name:"Acepromazine",dmin:0.02,dmax:0.05,unit:"mg/kg",route:"IV, IM",freq:"",conc:10,pres:"Vetranquil 10 mg/mL",notes:"Phenothiazine. Hypotension. CI etalon (priapisme)."},
+{cat:"Anesthesie",name:"Ketamine",dmin:2.2,dmax:2.2,unit:"mg/kg",route:"IV",freq:"",conc:100,pres:"100 mg/mL",notes:"Induction. Toujours apres sedation alpha-2."},
+{cat:"Anesthesie",name:"Diazepam",dmin:0.02,dmax:0.05,unit:"mg/kg",route:"IV",freq:"",conc:5,pres:"5 mg/mL",notes:"Myorelaxant. Avec ketamine pour induction."},
+{cat:"Anesthesie",name:"Thiopental",dmin:5,dmax:10,unit:"mg/kg",route:"IV",freq:"",conc:0,pres:"Poudre a reconstituer",notes:"Barbiturique. Induction ou relais."},
+{cat:"Antibiotiques",name:"Penicilline procaine",dmin:22000,dmax:22000,unit:"UI/kg",route:"IM",freq:"q12-24h",conc:300000,pres:"300 000 UI/mL",notes:"1ere ligne Gram+. TA: 7j.",isUI:true},
+{cat:"Antibiotiques",name:"Gentamicine",dmin:6.6,dmax:6.6,unit:"mg/kg",route:"IV",freq:"q24h",conc:100,pres:"100 mg/mL",notes:"Aminoside. Nephrotoxicite. Gram-."},
+{cat:"Antibiotiques",name:"TMS (trimethoprime-sulfa)",dmin:30,dmax:30,unit:"mg/kg",route:"IV, PO",freq:"q12h",conc:480,pres:"80+400 mg/mL IV ; pate PO",notes:"Spectre large. PO pratique terrain."},
+{cat:"Antibiotiques",name:"Metronidazole",dmin:15,dmax:25,unit:"mg/kg",route:"PO (rectal)",freq:"q8h",conc:0,pres:"cp 250/500 mg",notes:"Anaerobies. Gout amer."},
+{cat:"Antibiotiques",name:"Ceftiofur",dmin:2.2,dmax:4.4,unit:"mg/kg",route:"IM, IV",freq:"q12-24h",conc:50,pres:"Excenel 50 mg/mL",notes:"Cephalosporine 3G. Reserve."},
+{cat:"Antibiotiques",name:"Enrofloxacine",dmin:5,dmax:7.5,unit:"mg/kg",route:"IV lente, PO",freq:"q24h",conc:100,pres:"100 mg/mL",notes:"Fluoroquinolone. Attention cartilage poulain."},
+{cat:"Antibiotiques",name:"Doxycycline",dmin:10,dmax:10,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Poudre",notes:"Intracellulaires. Biodispo PO limitee equin."},
+{cat:"Antiparasitaires",name:"Ivermectine",dmin:0.2,dmax:0.2,unit:"mg/kg",route:"PO",freq:"",conc:0,pres:"Pate buccale 18.7 mg/g",notes:"Nematodes + larves migrans."},
+{cat:"Antiparasitaires",name:"Moxidectine",dmin:0.4,dmax:0.4,unit:"mg/kg",route:"PO",freq:"",conc:0,pres:"Pate buccale (Equest)",notes:"+ larves encysted cyathostomes. Toxique poulain <4 mois."},
+{cat:"Antiparasitaires",name:"Pyrantel",dmin:6.6,dmax:13.2,unit:"mg/kg",route:"PO",freq:"",conc:0,pres:"Pate",notes:"Double dose (13.2) = tenias."},
+{cat:"Antiparasitaires",name:"Praziquantel",dmin:1.0,dmax:1.0,unit:"mg/kg",route:"PO",freq:"",conc:0,pres:"Avec ivermectine (Equimax)",notes:"Cestodes."},
+{cat:"Antiparasitaires",name:"Fenbendazole",dmin:7.5,dmax:10,unit:"mg/kg",route:"PO",freq:"",conc:0,pres:"Panacur",notes:"Larvicide en cure 5j (7.5 mg/kg/j)."},
+{cat:"Digestif / Colique",name:"Butylscopolamine (Buscopan)",dmin:0.3,dmax:0.3,unit:"mg/kg",route:"IV",freq:"",conc:20,pres:"Buscopan 20 mg/mL",notes:"Antispasmodique. Effet 20-30min. Tachycardie."},
+{cat:"Digestif / Colique",name:"Lidocaine (prokinetiique)",dmin:1.3,dmax:1.3,unit:"mg/kg",route:"IV bolus puis 0.05 mg/kg/min",freq:"",conc:20,pres:"20 mg/mL",notes:"Prokinetiique. Ileus post-op."},
+{cat:"Urgences / Reanimation",name:"Adrenaline",dmin:0.01,dmax:0.02,unit:"mg/kg",route:"IV",freq:"",conc:1,pres:"1 mg/mL",notes:"Arret cardiaque."},
+{cat:"Urgences / Reanimation",name:"Atropine",dmin:0.01,dmax:0.02,unit:"mg/kg",route:"IV",freq:"",conc:1,pres:"1 mg/mL",notes:"Bradycardie. Attention ileus equin."},
+{cat:"Urgences / Reanimation",name:"Doxapram",dmin:0.5,dmax:1.0,unit:"mg/kg",route:"IV",freq:"",conc:20,pres:"20 mg/mL",notes:"Stimulant respiratoire neonatal."},
+{cat:"Divers",name:"Omeprazole",dmin:4,dmax:4,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Pate orale",notes:"UGCE. 28j min traitement. Prevention: 1 mg/kg."},
+{cat:"Divers",name:"Sucralfate",dmin:20,dmax:20,unit:"mg/kg",route:"PO",freq:"q6-8h",conc:0,pres:"Comprimes/suspension",notes:"Protecteur muqueuse gastrique."},
+{cat:"Divers",name:"Pergolide",dmin:0.002,dmax:0.002,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Comprimes",notes:"PPID (Cushing). Ajuster selon ACTH."},
+{cat:"Divers",name:"Furosemide",dmin:1,dmax:2,unit:"mg/kg",route:"IV",freq:"",conc:50,pres:"50 mg/mL",notes:"Diuretique. IC, oedeme."},
+{cat:"Divers",name:"Digoxine",dmin:0.011,dmax:0.011,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Comprimes",notes:"Insuffisance cardiaque."},
+{cat:"Divers",name:"Quinidine",dmin:22,dmax:22,unit:"mg/kg",route:"PO",freq:"q2h",conc:0,pres:"Poudre/solution",notes:"FA. Reussite ~85%."}
+];
+
+// --- Pharmaco page ---
+const pharmaList=document.getElementById('pharmaList');
+const dcats=[...new Set(DRUGS.map(d=>d.cat))];
+dcats.forEach(cat=>{
+  const div=document.createElement('div');
+  div.className='drug-cat';
+  div.innerHTML=`<h3>${cat}</h3>`;
+  DRUGS.filter(d=>d.cat===cat).forEach(d=>{
+    const row=document.createElement('div');
+    row.className='drug-row';
+    row.dataset.name=d.name.toLowerCase();
+    let info=`<span class="drug-dose">${d.dmin===d.dmax?d.dmin:d.dmin+'-'+d.dmax} ${d.unit}</span> | ${d.route}`;
+    if(d.freq) info+=` | ${d.freq}`;
+    info+=`<br>${d.pres}`;
+    if(d.notes) info+=`<br><em>${d.notes}</em>`;
+    row.innerHTML=`<p class="drug-name">${d.name}</p><p class="drug-info">${info}</p>`;
+    div.appendChild(row);
+  });
+  pharmaList.appendChild(div);
+});
+
+document.getElementById('pharmaSearch').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  document.querySelectorAll('.drug-row').forEach(r=>{
+    r.hidden=q.length>=2&&!r.dataset.name.includes(q)&&!r.textContent.toLowerCase().includes(q);
+  });
+  document.querySelectorAll('.drug-cat').forEach(cat=>{
+    const visible=cat.querySelectorAll('.drug-row:not([hidden])');
+    cat.hidden=q.length>=2&&visible.length===0;
+  });
+});
+
+// --- Calculator ---
+const calcDrug=document.getElementById('calcDrug');
+const calcWeight=document.getElementById('calcWeight');
+const calcResult=document.getElementById('calcResult');
+
+DRUGS.forEach((d,i)=>{
+  const opt=document.createElement('option');
+  opt.value=i;
+  opt.textContent=d.name;
+  calcDrug.appendChild(opt);
+});
+
+function calculate(){
+  const idx=calcDrug.value;
+  const w=parseFloat(calcWeight.value);
+  if(idx===''||!w){calcResult.innerHTML='';return;}
+  const d=DRUGS[idx];
+  const doseMin=d.dmin*w;
+  const doseMax=d.dmax*w;
+  const doseStr=doseMin===doseMax
+    ? `${doseMin.toFixed(doseMin<1?2:1)} ${d.unit.split('/')[0]}`
+    : `${doseMin.toFixed(doseMin<1?2:1)} - ${doseMax.toFixed(doseMax<1?2:1)} ${d.unit.split('/')[0]}`;
+
+  let volStr='';
+  if(d.conc>0){
+    const vMin=doseMin/d.conc;
+    const vMax=doseMax/d.conc;
+    volStr=vMin===vMax
+      ? `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} mL</span><div class="detail">Volume a administrer (${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`
+      : `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} - ${vMax.toFixed(vMax<1?2:1)} mL</span><div class="detail">Volume a administrer (${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`;
+  }
+
+  let html=`<div class="calc-result">
+    <span class="big">${doseStr}</span>
+    <div class="detail">Dose totale pour ${w} kg | ${d.route}</div>
+    ${volStr}`;
+  if(d.freq) html+=`<div class="detail">Frequence : ${d.freq}</div>`;
+  html+=`<div class="calc-drug-info"><strong>${d.pres}</strong><br>${d.notes||''}</div>`;
+  html+=`<div class="warn">Verifier poids, espece, voie et concentration avant administration.</div></div>`;
+  calcResult.innerHTML=html;
+}
+
+calcDrug.addEventListener('change',calculate);
+calcWeight.addEventListener('input',calculate);
 </script>
 </body>
 </html>

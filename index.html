@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches Equine ENVT</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap">
+<style>
+:root {
+  --bg: #f6f4f0;
+  --bg-card: #ffffff;
+  --bg-section: #f0eeea;
+  --text: #1a1a1a;
+  --text-muted: #5a5750;
+  --text-light: #8a857c;
+  --accent: #1a5276;
+  --accent-light: #d4e6f1;
+  --accent-hover: #154360;
+  --border: #e0ddd6;
+  --shadow: rgba(0,0,0,0.06);
+  --tag-bg: #e8e4de;
+  --success: #1e8449;
+  --warning: #b7950b;
+  --danger: #c0392b;
+  --radius: 10px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg: #141210;
+  --bg-card: #1e1c18;
+  --bg-section: #252320;
+  --text: #e8e4de;
+  --text-muted: #a09a90;
+  --text-light: #706b62;
+  --accent: #5dade2;
+  --accent-light: #1a3040;
+  --accent-hover: #85c1e9;
+  --border: #2e2c28;
+  --shadow: rgba(0,0,0,0.2);
+  --tag-bg: #2a2826;
+  --success: #27ae60;
+  --warning: #d4ac0d;
+  --danger: #e74c3c;
+}}
+:root[data-theme="dark"]{
+  --bg: #141210;
+  --bg-card: #1e1c18;
+  --bg-section: #252320;
+  --text: #e8e4de;
+  --text-muted: #a09a90;
+  --text-light: #706b62;
+  --accent: #5dade2;
+  --accent-light: #1a3040;
+  --accent-hover: #85c1e9;
+  --border: #2e2c28;
+  --shadow: rgba(0,0,0,0.2);
+  --tag-bg: #2a2826;
+  --success: #27ae60;
+  --warning: #d4ac0d;
+  --danger: #e74c3c;
+}
+*{box-sizing:border-box;margin:0}
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+/* --- Login screen --- */
+#loginScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.login-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 32px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px var(--shadow);
+}
+.login-box h1 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.login-box .sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.login-box input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.login-box button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.login-box button:hover { background: var(--accent-hover); }
+.login-error {
+  color: var(--danger);
+  font-size: 0.82rem;
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+
+/* --- App --- */
+#app { display: none; max-width: 800px; margin: 0 auto; padding-bottom: 80px; }
+.app-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg); padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.app-header h1 { font-size: 1.3rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+.search-wrap { position: relative; }
+.search-wrap input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg-card); color: var(--text);
+  font: inherit; font-size: 0.9rem;
+}
+.search-wrap input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.search-wrap input::placeholder { color: var(--text-light); }
+.search-wrap svg {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; stroke: var(--text-light); fill: none;
+}
+.cat-tabs {
+  display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.cat-tabs::-webkit-scrollbar { display: none; }
+.cat-tab {
+  flex-shrink: 0; padding: 6px 14px; border-radius: 20px;
+  background: var(--tag-bg); color: var(--text-muted);
+  font-size: 0.82rem; font-weight: 500; cursor: pointer;
+  border: none; white-space: nowrap; transition: all .15s;
+  font-family: inherit;
+}
+.cat-tab.active { background: var(--accent); color: #fff; }
+.fiche-grid { display: grid; gap: 10px; padding: 0 16px; }
+.fiche-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 14px 16px; cursor: pointer;
+  border: 1px solid var(--border); transition: box-shadow .15s;
+}
+.fiche-card:hover { box-shadow: 0 2px 8px var(--shadow); }
+.fiche-card h3 { font-size: 1rem; margin: 0 0 4px; }
+.fiche-card .src { font-size: 0.78rem; color: var(--text-light); margin: 0; }
+.fiche-card .tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px; margin-top: 6px;
+  background: var(--accent-light); color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.03em;
+}
+.fiche-view { display: none; padding: 0 16px; }
+.fiche-view.active { display: block; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: none; border: none; color: var(--accent);
+  font: inherit; font-size: 0.9rem; font-weight: 500;
+  padding: 8px 0; cursor: pointer; margin-bottom: 4px;
+}
+.fiche-view h2 { font-size: 1.25rem; margin: 0 0 4px; }
+.fiche-view .meta { font-size: 0.78rem; color: var(--text-light); margin: 0 0 16px; font-style: italic; }
+.section-toggle {
+  width: 100%; text-align: left;
+  background: var(--bg-section); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+  font: inherit; font-weight: 600; font-size: 0.92rem;
+  color: var(--text); cursor: pointer;
+  margin-bottom: 2px; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.section-toggle .arrow { transition: transform .2s; font-size: 0.8rem; color: var(--text-light); }
+.section-toggle.open .arrow { transform: rotate(90deg); }
+.section-content {
+  display: none; padding: 12px 14px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-top: none; border-radius: 0 0 8px 8px;
+  margin-bottom: 10px; font-size: 0.88rem;
+}
+.section-content.open { display: block; }
+.section-content table {
+  width: 100%; border-collapse: collapse; margin: 8px 0;
+  font-size: 0.82rem; font-variant-numeric: tabular-nums;
+}
+.section-content th, .section-content td {
+  padding: 6px 8px; border: 1px solid var(--border);
+  text-align: left; vertical-align: top;
+}
+.section-content th { background: var(--bg-section); font-weight: 600; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.section-content h4 { font-family: 'Fraunces', Georgia, serif; font-size: 0.95rem; margin: 12px 0 6px; }
+.section-content ul, .section-content ol { padding-left: 20px; margin: 6px 0; }
+.section-content li { margin-bottom: 4px; }
+.section-content strong { color: var(--accent); font-weight: 600; }
+.section-content blockquote {
+  margin: 8px 0; padding: 8px 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light); border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+}
+.section-content code {
+  background: var(--tag-bg); padding: 1px 5px; border-radius: 3px;
+  font-size: 0.85em;
+}
+.red { color: var(--danger); font-weight: 600; }
+.green { color: var(--success); font-weight: 600; }
+mark { background: #f9e79f; color: #1a1a1a; padding: 0 2px; border-radius: 2px; }
+.search-results { padding: 0 16px; }
+.search-result {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;
+  cursor: pointer;
+}
+.search-result h4 { margin: 0 0 2px; font-size: 0.9rem; }
+.search-result .ctx { font-size: 0.8rem; color: var(--text-muted); }
+.search-result .fiche-name { font-size: 0.72rem; color: var(--accent); font-weight: 600; }
+.no-results { text-align: center; padding: 40px 16px; color: var(--text-light); }
+.count { font-size: 0.72rem; background: var(--accent-light); color: var(--accent); padding: 1px 6px; border-radius: 8px; margin-left: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Login screen -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h1>Fiches Equine</h1>
+    <p class="sub">Entrez le mot de passe pour acceder aux fiches</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdBtn">Entrer</button>
+    <div class="login-error" id="pwdError"></div>
+  </div>
+</div>
+
+<!-- App (hidden until auth) -->
+<div id="app">
+  <div class="app-header">
+    <h1>Fiches Equine ENVT</h1>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="searchInput" placeholder="Rechercher (ex: colique, omeprazole, FA...)">
+    </div>
+  </div>
+  <div class="cat-tabs" id="catTabs"></div>
+  <div class="fiche-grid" id="ficheGrid"></div>
+  <div class="search-results" id="searchResults" hidden></div>
+  <div id="ficheViews"></div>
+</div>
+
+<script>
+const HASH='465db8169ec2f335b9cc50f271f6370280f5186d2391c2fa98210d3b932a7176';
+
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function tryLogin(){
+  const pwd=document.getElementById('pwdInput').value;
+  const h=await sha256(pwd);
+  if(h===HASH){
+    try{sessionStorage.setItem('fiches_auth','1')}catch(e){}
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').style.display='block';
+  } else {
+    document.getElementById('pwdError').textContent='Mot de passe incorrect';
+    document.getElementById('pwdInput').value='';
+    document.getElementById('pwdInput').focus();
+  }
+}
+
+document.getElementById('pwdBtn').onclick=tryLogin;
+document.getElementById('pwdInput').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
+
+try{
+  if(sessionStorage.getItem('fiches_auth')==='1'){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').style.display='block';
+  }
+}catch(e){}
+
+const FICHES=[
+{id:"coliques",title:"Coliques equines",cat:"Urgences",src:"Alfort/Oniris",sections:[
+{t:"Classification etiologique",c:`<h4>Causes extra-abdominales (exclure en premier)</h4>
+<p>Fourbure, myopathie, pleuresie, encephalose hepatique</p>
+<h4>Obstructives non etranglees</h4>
+<div class="table-wrap"><table>
+<tr><th>Localisation</th><th>Exemples</th></tr>
+<tr><td>Estomac</td><td>Surcharge gastrique, dilatation gazeuse</td></tr>
+<tr><td>IG</td><td>Impaction ileon, Parascaris (poulains)</td></tr>
+<tr><td>GI</td><td>Stase courbure pelvienne, sablose</td></tr>
+<tr><td>Deplacements</td><td>Accrochement nephro-splenique (G), deplacement D colon</td></tr>
+</table></div>
+<h4>Obstructives etranglees = CHIRURGIE</h4>
+<div class="table-wrap"><table>
+<tr><th>IG</th><td>Hernie inguinale, incarceration foramen epiploique, lipome pedicule (>15 ans), volvulus</td></tr>
+<tr><th>GI</th><td>Torsion colon (post-partum ++), torsion caecum</td></tr>
+</table></div>
+<blockquote>Etranglement = ischemie = necrose en <strong>6h max</strong> &rarr; chirurgie obligatoire</blockquote>`},
+{t:"Triage & parametres de gravite",c:`<div class="table-wrap"><table>
+<tr><th>Parametre</th><th>Favorable</th><th>Defavorable</th></tr>
+<tr><td><strong>FC (LE + IMPORTANT)</strong></td><td>&lt; 50 bpm</td><td>&gt; 60 bpm</td></tr>
+<tr><td>Muqueuses</td><td>Roses, humides</td><td>Congestives, cyanosees</td></tr>
+<tr><td>TRC</td><td>&lt; 2 sec</td><td>&gt; 3-4 sec</td></tr>
+<tr><td>Bruits digestifs</td><td>Presents</td><td>Absents</td></tr>
+<tr><td>Douleur</td><td>Repond aux AINS</td><td>Violente, ne repond pas</td></tr>
+<tr><td>Reflux naso-gastrique</td><td>Absent</td><td>&gt; 2L = atteinte IG</td></tr>
+</table></div>
+<h4>Estimation deshydratation</h4>
+<div class="table-wrap"><table>
+<tr><th></th><th>3%</th><th>5%</th><th>&ge;10%</th></tr>
+<tr><td>Ht</td><td>45-50%</td><td>50-60%</td><td>&ge;60%</td></tr>
+<tr><td>PT</td><td>75-80 g/L</td><td>80-90 g/L</td><td>&ge;90 g/L</td></tr>
+</table></div>`},
+{t:"Examens complementaires terrain",c:`<h4>PTR (obligatoire)</h4>
+<ul><li>Sous sedation + lidocaine intra-rectale</li>
+<li>On ne doit <strong>PAS sentir l'IG</strong> normalement</li></ul>
+<h4>Sondage naso-gastrique</h4>
+<ul><li><strong>Prioritaire si FC &gt; 80-90 bpm</strong> (risque rupture gastrique)</li>
+<li>Reflux &gt; 2L = enterite proximale ou obstruction IG</li></ul>
+<h4>Paracentese abdominale</h4>
+<div class="table-wrap"><table>
+<tr><th>Aspect</th><th>Interpretation</th></tr>
+<tr><td>Jaune clair</td><td>Normal</td></tr>
+<tr><td>Sero-hemorragique</td><td class="red">Chirurgie</td></tr>
+<tr><td>Particules alimentaires</td><td class="red">RUPTURE = euthanasie</td></tr>
+</table></div>
+<h4>Echo FLASH</h4>
+<ul><li>IG dilate amotile = obstruction IG</li>
+<li>Gaz profondeur rate = accrochement nephro-splenique</li></ul>`},
+{t:"Decision medical vs chirurgical",c:`<div class="table-wrap"><table>
+<tr><th>Critere</th><th>Seuil pour referer</th></tr>
+<tr><td>FC</td><td>&gt; 60 bpm</td></tr>
+<tr><td>Douleur</td><td>Intense, ne repond pas aux AINS</td></tr>
+<tr><td>Reflux gastrique</td><td>Present</td></tr>
+<tr><td>Bruits digestifs</td><td>Absence complete</td></tr>
+<tr><td>Transit</td><td>Absent &gt; 8-12h</td></tr>
+</table></div>
+<blockquote>Un cheval est <strong>TOUJOURS deplacable</strong>. Ne pas attendre.</blockquote>`},
+{t:"Traitement medical",c:`<h4>Analgesie</h4>
+<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Dose</th><th>Voie</th><th>Duree</th></tr>
+<tr><td><strong>Metamizole</strong></td><td>5-22 mg/kg</td><td>IV/IM</td><td>2h</td></tr>
+<tr><td><strong>Buscopan</strong></td><td>0.2 mg/kg</td><td>IV</td><td>4h</td></tr>
+<tr><td><strong>Detomidine</strong></td><td>10-20 mcg/kg</td><td>IV</td><td>1h</td></tr>
+<tr><td><strong>Flunixine</strong></td><td>0.25-1.1 mg/kg</td><td>IV</td><td>6-12h</td></tr>
+<tr><td><strong>Butorphanol</strong></td><td>0.01-0.04 mg/kg</td><td>IV</td><td>4h</td></tr>
+</table></div>
+<blockquote class="red">Eviter flunixine si on envisage de referer : masque les signes CV pendant 6h</blockquote>
+<h4>Laxatifs (par sonde)</h4>
+<div class="table-wrap"><table>
+<tr><th>Laxatif</th><th>Dose</th><th>Indication</th></tr>
+<tr><td>Huile de paraffine</td><td>5-10 ml/kg</td><td>Impaction</td></tr>
+<tr><td>MgSO4</td><td>0.5-1 g/kg</td><td>Impaction (sous perf)</td></tr>
+<tr><td>Psyllium</td><td>1 g/kg</td><td>Sablose</td></tr>
+</table></div>`},
+{t:"Red flags",c:`<ul>
+<li class="red">FC &gt; 60 bpm persistante</li>
+<li class="red">Douleur violente ne repondant pas aux AINS</li>
+<li class="red">Reflux naso-gastrique &gt; 2L</li>
+<li class="red">Muqueuses congestives, TRC &gt; 4 sec</li>
+<li class="red">Absence totale bruits digestifs</li>
+<li class="red">Lactates sanguins &gt; 4 mmol/L</li>
+<li class="red">Liquide peritoneal sero-hemorragique</li>
+<li class="red">Passage brutal douleur &rarr; prostration = possible rupture</li>
+</ul>`}
+]},
+
+{id:"anesthesie",title:"Anesthesie equine",cat:"Anesthesie",src:"Alfort/Oniris",sections:[
+{t:"Risque anesthesique",c:`<ul><li><strong>Mortalite ~1%</strong> ASA I (vs 0.1% carnivores)</li>
+<li>Causes deces : arret cardiaque 33%, fractures reveil 26%, myopathie 7%</li></ul>
+<div class="table-wrap"><table>
+<tr><th>ASA</th><th>Etat</th><th>Mortalite</th></tr>
+<tr><td>I</td><td>Normal</td><td>~1%</td></tr>
+<tr><td>II</td><td>Affection mineure</td><td>2-5%</td></tr>
+<tr><td>III</td><td>Moderee</td><td>10-20%</td></tr>
+<tr><td>IV</td><td>Majeure</td><td>20-25%</td></tr>
+<tr><td>V</td><td>Moribond</td><td>25-30%</td></tr>
+</table></div>`},
+{t:"Sedation debout",c:`<h4>Alpha2-agonistes</h4>
+<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Pic IV</th><th>Duree IV</th><th>Duree IM</th></tr>
+<tr><td><strong>Xylazine</strong></td><td>3-5 min</td><td>10-40 min</td><td>40-60 min</td></tr>
+<tr><td><strong>Romifidine</strong></td><td>3-5 min</td><td>20-60 min</td><td>40-80 min</td></tr>
+<tr><td><strong>Detomidine</strong></td><td>5-10 min</td><td>30-80 min</td><td>60-120 min</td></tr>
+</table></div>
+<ul><li>Effet plafond : sedation &gt; analgesie &rarr; ajouter opiode</li>
+<li><strong>Ne jamais melanger 2 alpha2 differents</strong></li></ul>
+<h4>Opiodes</h4>
+<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Dose</th><th>Duree</th></tr>
+<tr><td><strong>Butorphanol</strong></td><td>0.01-0.02 mg/kg</td><td>10-40 min</td></tr>
+<tr><td><strong>Morphine</strong></td><td>0.1-0.2 mg/kg</td><td>~4h</td></tr>
+<tr><td><strong>Buprenorphine</strong></td><td>0.005-0.01 mg/kg</td><td>5-8h</td></tr>
+</table></div>
+<p>Butorphanol permet de diminuer de <strong>30%</strong> la dose d'alpha2</p>`},
+{t:"Induction & entretien",c:`<h4>Protocole standard</h4>
+<div class="table-wrap"><table>
+<tr><th>Etape</th><th>Molecule</th><th>Dose IV</th></tr>
+<tr><td>Premed</td><td>Alpha2 + opiode</td><td>Voir sedation</td></tr>
+<tr><td>Induction</td><td><strong>Diazepam</strong></td><td>0.04-0.1 mg/kg</td></tr>
+<tr><td></td><td><strong>Ketamine</strong></td><td>2-2.5 mg/kg</td></tr>
+</table></div>
+<blockquote><strong>Un cheval qui s'endort mal se reveillera mal</strong></blockquote>
+<h4>Triple Drip (~1h d'anesthesie)</h4>
+<div class="table-wrap"><table>
+<tr><th>Composant</th><th>Quantite</th></tr>
+<tr><td>GGE 5%</td><td>50 g dans 1 L</td></tr>
+<tr><td>+ Ketamine</td><td>1 g</td></tr>
+<tr><td>+ Xylazine</td><td>500 mg</td></tr>
+</table></div>
+<p>Debit : <strong>1-2 ml/kg/h</strong> (~500 mL/h pour 500 kg). Max 45-60 min (accumulation ketamine).</p>`},
+{t:"Monitoring",c:`<div class="table-wrap"><table>
+<tr><th>Parametre</th><th>Outil</th><th>Objectif</th></tr>
+<tr><td><strong>PA</strong></td><td>Catheter arteriel</td><td>PAM &gt; 60-70 mmHg</td></tr>
+<tr><td><strong>SpO2</strong></td><td>Oxymetre (langue)</td><td>&gt; 90%</td></tr>
+<tr><td><strong>EtCO2</strong></td><td>Capnographie</td><td>&lt; 45 mmHg (permissive &rarr; 70)</td></tr>
+<tr><td><strong>FC</strong></td><td>ECG/pouls</td><td>Variable</td></tr>
+</table></div>`},
+{t:"Complications",c:`<h4>Hypotension (la + frequente)</h4>
+<p><strong>Dobutamine</strong> perfusion continue (adulte) | Ephedrine bolus (poulain)</p>
+<h4>Complications au reveil</h4>
+<div class="table-wrap"><table>
+<tr><th>Complication</th><th>Conduite</th></tr>
+<tr><td><strong>Myopathie</strong></td><td>Resedater, fluidotherapie, pas lever avant 12h</td></tr>
+<tr><td><strong>Neuropathie</strong></td><td>Pas de douleur (vs myopathie)</td></tr>
+<tr><td><strong>Fractures</strong> (26% deces)</td><td>Deferrer, bander, box securise</td></tr>
+</table></div>`},
+{t:"Protocoles pratiques (500 kg)",c:`<h4>Castration debout</h4>
+<div class="table-wrap"><table>
+<tr><th>Etape</th><th>Molecule</th><th>Dose</th></tr>
+<tr><td>J-20 min</td><td>ACP</td><td>0.01 mg/kg IV</td></tr>
+<tr><td>Sedation</td><td>Romifidine</td><td>0.08 mg/kg IV</td></tr>
+<tr><td>Analgesie</td><td>Morphine</td><td>0.1 mg/kg IV</td></tr>
+<tr><td>+ ALR</td><td>Lidocaine intra-testiculaire</td><td></td></tr>
+</table></div>`}
+]},
+
+{id:"plaies",title:"Gestion des plaies",cat:"Chirurgie",src:"EnvA",sections:[
+{t:"Evaluation & cicatrisation",c:`<ul><li>L'aspect visuel ne reflete <strong>PAS</strong> la gravite</li>
+<li>Le cheval est un <strong>mauvais cicatrisant</strong></li>
+<li>Toujours 2 radios orthogonales minimum</li></ul>
+<div class="table-wrap"><table>
+<tr><th>Phase</th><th>Delai</th><th>Evenements</th></tr>
+<tr><td>Inflammatoire</td><td>J0-J7</td><td>Vasoconstriction, detersion</td></tr>
+<tr><td>Reparation</td><td>J7-J14</td><td>Fibroblastes, collagene III, granulation</td></tr>
+<tr><td>Maturation</td><td>3 sem-1 an+</td><td>Collagene III&rarr;I, contraction</td></tr>
+</table></div>
+<p>A 3 semaines : <strong>seulement 20% de resistance mecanique</strong></p>`},
+{t:"Structures synoviales",c:`<ul><li>Toute plaie en regard d'une articulation &rarr; suspecter communication</li>
+<li>Confirmation : <strong>mise sous pression</strong> (serum physio dans recessus le + loin)</li>
+<li class="red">JAMAIS injecter dans ou proche de la plaie</li></ul>
+<div class="table-wrap"><table>
+<tr><th>Parametre</th><th>Normal</th><th>Infecte</th></tr>
+<tr><td>TP</td><td>2.5 g/dL</td><td>&gt; 4 g/dL</td></tr>
+<tr><td>WBC</td><td>300/mm3</td><td>&gt; 30 000</td></tr>
+<tr><td>% PNN</td><td>10-20%</td><td>&gt; 80%</td></tr>
+</table></div>`},
+{t:"Suturer ou pas",c:`<div class="table-wrap"><table>
+<tr><th>1ere intention</th><th>2nde intention</th></tr>
+<tr><td>Plaies franches, recentes</td><td>Plaies anciennes</td></tr>
+<tr><td>Peu contaminees</td><td>Tres contaminees</td></tr>
+<tr><td>Bon apport vasculaire</td><td>Defaut vasculaire</td></tr>
+<tr><td>Fermeture sans tension</td><td>Forte tension</td></tr>
+</table></div>`},
+{t:"Pansements & antiseptiques",c:`<div class="table-wrap"><table>
+<tr><th>Produit</th><th>Phase</th><th>Proprietes</th></tr>
+<tr><td>Curasalt</td><td>Detersion</td><td>NaCl hypertonique</td></tr>
+<tr><td>Sorbact</td><td>Detersion</td><td>Hydrophobe, adsorbe bacteries</td></tr>
+<tr><td>Miel</td><td>Detersion + granulation</td><td>Antibacterien naturel</td></tr>
+<tr><td>Dermaflon</td><td>Detersion + granulation</td><td>pH acide</td></tr>
+<tr><td>Cicacare</td><td>Maturation</td><td>Plaque silicone, anti-TGE</td></tr>
+</table></div>
+<h4>Antiseptiques dilues (irrigation)</h4>
+<ul><li>Povidone iodee : <strong>0.1%</strong></li>
+<li>Chlorhexidine : <strong>0.05%</strong></li>
+<li class="red">Eau oxygenee : JAMAIS (sauf anaerobies)</li></ul>`},
+{t:"Particularites & complications",c:`<div class="table-wrap"><table>
+<tr><th>Region</th><th>Points cles</th></tr>
+<tr><td>Membre distal</td><td>Epithelialisation lente, tendance TGE, immobilisation +++</td></tr>
+<tr><td>Articulations</td><td>Chercher communication, ATB intra-articulaire (gentamicine)</td></tr>
+<tr><td>Tendons</td><td>TFPD atteint = pince relevee. Immobiliser</td></tr>
+</table></div>
+<h4>TGE (tissu de granulation exuberant)</h4>
+<ul><li>Facteurs : plaies distales, mobilite, corps etranger</li>
+<li>Gestion : bistouri, AINS, Cicacare, bandages</li>
+<li class="red">Eviter caustiques et corticoides au long cours</li></ul>
+<p><strong>SAT</strong> : toute plaie = risque tetanos. Verifier statut vaccinal.</p>`}
+]},
+
+{id:"neonat",title:"Neonatalogie equine",cat:"Neonatalogie",src:"V. Picandet, ENVA",sections:[
+{t:"Poulain normal — Regle 1-2-3",c:`<div class="table-wrap"><table>
+<tr><th>Delai</th><th>Evenement</th></tr>
+<tr><td>&lt; 1 min</td><td>Respiration reguliere</td></tr>
+<tr><td><strong>1 h</strong></td><td><strong>Debout</strong></td></tr>
+<tr><td><strong>2 h</strong></td><td><strong>1ere tetee</strong></td></tr>
+<tr><td><strong>3 h (&lt;8h)</strong></td><td><strong>Meconium</strong></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Parametre</th><th>Normal</th></tr>
+<tr><td>Poids</td><td>~8% poids mere</td></tr>
+<tr><td>FC</td><td><strong>80-120 bpm</strong></td></tr>
+<tr><td>FR</td><td><strong>20-40 mpm</strong></td></tr>
+<tr><td>T&deg;</td><td>37.5-38.8&deg;C</td></tr>
+</table></div>`},
+{t:"Transfert immunite passive",c:`<ul><li>Placenta epitheliochorial = <strong>pas de transfert in utero</strong></li>
+<li>Seul moyen : <strong>colostrum</strong></li>
+<li>Fermeture intestinale <strong>12-24h</strong></li>
+<li>Objectif : <strong>IgG &gt; 800 mg/dL</strong></li></ul>
+<div class="table-wrap"><table>
+<tr><th>IgG</th><th>Interpretation</th></tr>
+<tr><td>&gt; 800</td><td class="green">Normal</td></tr>
+<tr><td>400-800</td><td>Defaut partiel</td></tr>
+<tr><td>&lt; 400</td><td class="red">Defaut severe</td></tr>
+<tr><td>&lt; 200</td><td class="red">Defaut complet</td></tr>
+</table></div>
+<ul><li>&lt; 12-18h : voie orale/SNG</li>
+<li>&gt; 18-24h : <strong>plasma IV obligatoire</strong></li></ul>`},
+{t:"Encephalopathie neonatale (Dummy foal)",c:`<ul><li>Syndrome neurologique <strong>non infectieux</strong>, prevalence 1-2%</li></ul>
+<h4>Signes</h4>
+<ul><li>Leger : desorientation, protrusion langue, star gazing</li>
+<li>Grave : convulsions, decubitus, vocalisations (barker foal)</li></ul>
+<h4>Traitement</h4>
+<ul><li>Convulsions : <strong>diazepam</strong> 0.1-0.2 mg/kg IV</li>
+<li><strong>Technique de Madigan</strong> (squeezing) : poulains &lt; 2j</li>
+<li>Taux de survie : <strong>80%</strong></li></ul>`},
+{t:"Septicemie neonatale",c:`<ul><li>Principalement <strong>gram negatifs</strong> (E. coli, Actinobacillus)</li>
+<li>Apparition : <strong>24-72h</strong> de vie</li>
+<li>Fievre pas toujours presente (souvent hypothermie)</li></ul>
+<h4>Traitement</h4>
+<ul><li>1ere intention : <strong>penicilline + aminoside</strong> (gentamicine)</li>
+<li>Alternative : ceftiofur</li></ul>
+<p>Survie : <strong>&lt; 60%</strong> &mdash; urgence absolue</p>`},
+{t:"Reanimation ABCD",c:`<div class="table-wrap"><table>
+<tr><th>Etape</th><th>Action</th><th>Details</th></tr>
+<tr><td><strong>A</strong></td><td>Airway</td><td>Degager VRS, poire aspiration</td></tr>
+<tr><td><strong>B</strong></td><td>Breathing</td><td>Bouche a naseau 10-20/min</td></tr>
+<tr><td><strong>C</strong></td><td>Cardiac</td><td>Massage 90-120/min, decubitus lateral</td></tr>
+<tr><td><strong>D</strong></td><td>Drugs</td><td>Adrenaline 0.01-0.02 mg/kg IV</td></tr>
+</table></div>`},
+{t:"Fluidotherapie & signes d'alerte",c:`<ul><li>Bolus choc : <strong>RL 20 mL/kg sur 10-20 min</strong></li>
+<li>Entretien : <strong>80-100 mL/kg/jour</strong></li>
+<li>Hypoglycemie (&lt;2.5 mmol/L) : glucose IV <strong>en continu</strong> (pas de bolus!)</li></ul>
+<h4>Signes d'alerte</h4>
+<ul>
+<li class="red">Ne se leve pas dans l'heure</li>
+<li class="red">Absence reflexe succion/tetee dans les 2h</li>
+<li class="red">Hypothermie ou hyperthermie</li>
+<li class="red">Convulsions, desorientation</li>
+<li class="red">Ictere, urine rouge (isoerythrolyse)</li>
+<li class="red">Ecoulement ombilical chaud</li></ul>
+<p>Soins ombilic : <strong>chlorhexidine 0.5%</strong> 4x/jour</p>`}
+]},
+
+{id:"cardio",title:"Cardiologie equine",cat:"Medecine",src:"Pr A. Courouce, Nantes",sections:[
+{t:"Auscultation cardiaque",c:`<div class="table-wrap"><table>
+<tr><th>Valve</th><th>Localisation</th></tr>
+<tr><td>Mitrale</td><td>5e EIC a G</td></tr>
+<tr><td>Aortique</td><td>3e-4e EIC a G</td></tr>
+<tr><td>Pulmonaire</td><td>3e EIC a G</td></tr>
+<tr><td>Tricuspide</td><td>3e-4e EIC a D</td></tr>
+</table></div>
+<p>Sequence : B4 - <strong>B1</strong> - B2 - B3<br>
+FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</strong></p>`},
+{t:"Souffles cardiaques",c:`<div class="table-wrap"><table>
+<tr><th>Grade</th><th>Description</th></tr>
+<tr><td>1</td><td>Tres doux, auscultation prolongee</td></tr>
+<tr><td>2</td><td>Faible, audible au PMI</td></tr>
+<tr><td>3</td><td>Moderement fort</td></tr>
+<tr><td>4</td><td>Fort, large aire, SANS thrill</td></tr>
+<tr><td>5</td><td>Fort + <strong>thrill palpable</strong></td></tr>
+<tr><td>6</td><td>Audible stethoscope decolle + thrill</td></tr>
+</table></div>
+<h4>Quand s'inquieter</h4>
+<ul><li><strong>Mitrale</strong> : toujours pousser les examens</li>
+<li><strong>Tricuspide</strong> : grade &ge; 4, thrill, FA associee</li>
+<li><strong>Aortique</strong> : jeune cheval, grade &ge; 4, pouls bondissant</li></ul>`},
+{t:"Arythmies",c:`<h4>Physiologiques (tonus vagal eleve)</h4>
+<div class="table-wrap"><table>
+<tr><th>Arythmie</th><th>Description</th></tr>
+<tr><td><strong>BAV 2e degre</strong></td><td>La + frequente (40% chevaux sains). Disparait exercice</td></tr>
+<tr><td>Bloc sinusal</td><td>Pauses intermittentes. Disparait exercice</td></tr>
+</table></div>
+<h4>Pathologiques</h4>
+<div class="table-wrap"><table>
+<tr><th>Arythmie</th><th>Clinique</th></tr>
+<tr><td><strong>FA</strong></td><td>La + frequente patho. Irregulierement irregulier, B4 absent</td></tr>
+<tr><td><strong>TV</strong></td><td>FC &gt; 120. Risque mort subite</td></tr>
+<tr><td>ESV freq</td><td>&gt; 1/h = myocardite, cardiomyopathie</td></tr>
+</table></div>`},
+{t:"Fibrillation atriale",c:`<ul><li>Arythmie patho la <strong>plus frequente</strong>, souvent idiopathique</li>
+<li>Auscultation : rythme <strong>irregulierement irregulier</strong>, B4 absent</li>
+<li>ECG : pas d'onde P, ondes f, R-R irreguliers</li></ul>
+<h4>Traitement</h4>
+<ul><li><strong>Quinidine</strong> PO : 22 mg/kg q2h (reussite ~85%)</li>
+<li>Cardioversion electrique transveineuse : alternative</li></ul>
+<p>FA isolee traitee : bon retour competition</p>`},
+{t:"IC & aptitude sportive",c:`<div class="table-wrap"><table>
+<tr><th></th><th>IC droite</th><th>IC gauche</th></tr>
+<tr><td>Signes</td><td>Oedeme generalise, distension veineuse</td><td>Oedeme pulmonaire</td></tr>
+</table></div>
+<h4>Traitement IC</h4>
+<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Dose</th></tr>
+<tr><td><strong>Furosemide</strong></td><td>1-2 mg/kg IV</td></tr>
+<tr><td><strong>Digoxine</strong></td><td>0.011 mg/kg q12h PO</td></tr>
+</table></div>
+<h4>Aptitude sportive</h4>
+<div class="table-wrap"><table>
+<tr><th>Situation</th><th>Conduite</th></tr>
+<tr><td>Souffle fonctionnel &le; 3</td><td class="green">Compatible</td></tr>
+<tr><td>FA isolee traitee</td><td class="green">Retour possible</td></tr>
+<tr><td>ESV frequentes ou TV</td><td class="red">Contre-indication</td></tr>
+<tr><td>CIV &lt; 2.5 cm</td><td class="green">Compatible</td></tr>
+</table></div>`}
+]},
+
+{id:"respi",title:"Affections respiratoires",cat:"Medecine",src:"A. Courouce, Alfort",sections:[
+{t:"CAT toux & jetage",c:`<div class="table-wrap"><table>
+<tr><th>Type toux</th><th>Orientation</th></tr>
+<tr><td>Rauque, quinteuse</td><td>VRS (virale)</td></tr>
+<tr><td>Forte, profonde, humide</td><td>Bronches</td></tr>
+<tr><td>Petite, courte</td><td>Obstructive VRP</td></tr>
+</table></div>
+<h4>Orientation jetage</h4>
+<div class="table-wrap"><table>
+<tr><th>Type</th><th>Lateralite</th><th>Hypotheses</th></tr>
+<tr><td>Sereux + fievre + contagieux</td><td>Bilateral</td><td>Grippe, rhino</td></tr>
+<tr><td>Mucopurulent + ganglions</td><td>Bilateral</td><td>Gourme</td></tr>
+<tr><td>Seromuqueux chronique</td><td>Bilateral</td><td>Asthme equin</td></tr>
+<tr><td>Purulent, nauseabond</td><td>Unilateral</td><td>Sinusite</td></tr>
+<tr><td>Sanguin exercice</td><td>Uni/bilateral</td><td>HPIE, mycose PG</td></tr>
+</table></div>`},
+{t:"Asthme equin severe (pousse)",c:`<ul><li>Chevaux <strong>&gt; 7 ans</strong>, toux, intolerance exercice</li>
+<li>LBA : <strong>neutrophiles tres augmentes</strong></li>
+<li>Limitation flux d'air <strong>reversible</strong></li></ul>
+<p><strong>Mesures hygieniques fondamentales</strong> : litiere non poussieureuse, foin mouille, paddock</p>
+<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Dose</th><th>Voie</th></tr>
+<tr><td>Dexamethasone</td><td>0.05-0.1 mg/kg</td><td>PO/IV</td></tr>
+<tr><td>Beclometasone</td><td>500 ug BID</td><td>Aerosol</td></tr>
+<tr><td><strong>Clenbuterol</strong></td><td>0.8-3.2 ug/kg BID</td><td>PO (10j)</td></tr>
+</table></div>`},
+{t:"Infections VRS",c:`<h4>Gourme (S. equi)</h4>
+<ul><li>Fievre, toux, jetage mucopurulent, ganglions douloureux</li>
+<li>ATB <strong>non recommandes</strong> (risque gourme froide)</li>
+<li><strong>Zonage strict</strong> : rouge/orange/verte</li></ul>
+<h4>Rhinopneumonie (HVE-1/4)</h4>
+<p>Jetage sereux bilateral, fievre. HVE-1 : avortements, myelo-encephalite.</p>
+<h4>Arterite virale</h4>
+<p>Fievre, oedemes, <strong>avortement 50-70%</strong></p>`},
+{t:"Pneumonies & poches gutturales",c:`<h4>Rhodococcose (poulains 1.5-12 mois)</h4>
+<p><strong>Rifampicine</strong> 5-10 mg/kg BID + <strong>Azithromycine</strong> 10 mg/kg SID, 5-6 semaines</p>
+<h4>Mycose poches gutturales</h4>
+<ul><li>Risque carotide interne = <strong>hemorragie fatale</strong></li>
+<li>TTT : enilconazole + <strong>ligature carotide commune</strong></li></ul>`},
+{t:"HPIE, hemiplegie & normes LBA",c:`<h4>HPIE</h4>
+<ul><li>5% seulement avec epistaxis visible</li>
+<li>Diagnostic : <strong>LBA</strong> (examen de choix)</li></ul>
+<h4>Hemiplegie laryngee</h4>
+<p>Grades I (normal) a IV (immobilite totale)</p>
+<h4>Normes LBA</h4>
+<div class="table-wrap"><table>
+<tr><th>Cellule</th><th>Seuil normal</th></tr>
+<tr><td>Neutrophiles</td><td>&lt; 10%</td></tr>
+<tr><td>Eosinophiles</td><td>&lt; 5%</td></tr>
+<tr><td>Mastocytes</td><td>&lt; 5%</td></tr>
+</table></div>`}
+]},
+
+{id:"ulceres",title:"Ulceres gastriques (EGUS)",cat:"Medecine",src:"A. Courouce-Marty, Alfort",sections:[
+{t:"Anatomie & physiopathologie",c:`<ul><li>Estomac petit (8-15 L), <strong>margo plicatus</strong> = limite squameuse/glandulaire</li>
+<li>HCl secrete <strong>en continu</strong>, salive tampon uniquement pendant mastication</li></ul>
+<div class="table-wrap"><table>
+<tr><th></th><th>ESGD (squameuse)</th><th>EGGD (glandulaire)</th></tr>
+<tr><td>Mecanisme</td><td><strong>Agression</strong> acide</td><td><strong>Defaut protection</strong></td></tr>
+<tr><td>Causes</td><td>Entrainement, concentres, jeune</td><td>AINS +++, stress</td></tr>
+</table></div>`},
+{t:"Diagnostic & grading",c:`<blockquote>Severite lesions <strong>PAS correlee</strong> aux signes cliniques</blockquote>
+<p>Adulte : baisse appetit/performance, poil terne, coliques post-prandiales</p>
+<p>Poulain : diarrhee, refus teter, <strong>mort subite</strong> (perforation)</p>
+<p>Gastroscopie : jeune <strong>12h</strong>, hydrique 2h, scope <strong>3.2 m</strong></p>
+<div class="table-wrap"><table>
+<tr><th>Grade</th><th>Description</th></tr>
+<tr><td>0</td><td>Normale</td></tr>
+<tr><td>1</td><td>Hyperkeratose</td></tr>
+<tr><td>2</td><td>Lesions peu profondes, multifocales</td></tr>
+<tr><td>3</td><td>Lesions severes, etendues</td></tr>
+<tr><td>4</td><td>Ulceration profonde etendue</td></tr>
+</table></div>`},
+{t:"Traitement & prevention",c:`<div class="table-wrap"><table>
+<tr><th></th><th>ESGD</th><th>EGGD</th></tr>
+<tr><td>1ere intention</td><td>Omeprazole 4 mg/kg PO q24h</td><td>Omeprazole + <strong>Sucralfate 12 mg/kg q12h</strong></td></tr>
+<tr><td>Duree</td><td><strong>3 semaines</strong> min</td><td><strong>4 semaines</strong> min</td></tr>
+<tr><td>Controle</td><td colspan="2">Gastroscopie avant arret</td></tr>
+</table></div>
+<blockquote>Nourrir <strong>30 min-1h apres</strong> l'omeprazole. Ne pas donner sucralfate en meme temps.</blockquote>
+<h4>Prevention</h4>
+<ul><li><strong>Foin a volonte</strong>, repas fractionnes</li>
+<li>Pas de concentres a jeun</li>
+<li>Sortie paddock, gestion stress</li></ul>`}
+]},
+
+{id:"medprev",title:"Medecine preventive",cat:"Preventif",src:"E. Manguin, J. Guillot, ENVA",sections:[
+{t:"Vaccination — Grippe",c:`<ul><li>Influenza A, H3N8 sous-lignee <strong>Florida</strong></li>
+<li>Seul vaccin reellement <strong>obligatoire</strong> (courses/competitions)</li></ul>
+<div class="table-wrap"><table>
+<tr><th></th><th>FFE</th><th>FEI</th><th>Courses</th></tr>
+<tr><td>Primo</td><td>2 inj. 21-92j</td><td>2 inj. 21-92j</td><td>2 inj. 21-60j</td></tr>
+<tr><td>1er rappel</td><td>5-6 mois</td><td>7 mois</td><td>120-180j</td></tr>
+<tr><td>Rappels</td><td>Max 12 mois</td><td>Max 12 mois</td><td>Max 6 mois (galop)</td></tr>
+</table></div>`},
+{t:"Tetanos & autres vaccins",c:`<h4>Tetanos (ESSENTIEL)</h4>
+<ul><li>Efficacite ~100%, mortalite 80%+ sans vaccin</li>
+<li>Primo : <strong>2 injections a 1 mois</strong></li>
+<li>Rappel 1 an puis tous les 1-3 ans</li></ul>
+<h4>Rhinopneumonie</h4>
+<p>Juments gestantes : <strong>5, 7, 9 mois</strong></p>
+<h4>Autres</h4>
+<p>Rage (1 inj, rappel annuel) | West Nile (2 inj, rappel annuel) | Gourme (2 SL)</p>`},
+{t:"Principaux parasites",c:`<div class="table-wrap"><table>
+<tr><th>Parasite</th><th>Cible</th><th>Pathogenie</th></tr>
+<tr><td><strong>Grands strongles</strong></td><td>Tous</td><td>Coliques thrombo-emboliques</td></tr>
+<tr><td><strong>Petits strongles</strong> (cyathostomes)</td><td>Adultes</td><td>Cyathostominose larvaire (mortel)</td></tr>
+<tr><td><strong>Ascaris</strong></td><td>Poulains</td><td>Obstruction/perforation</td></tr>
+<tr><td><strong>Tenias</strong></td><td>Tous</td><td>Coliques valvule ileo-caecale</td></tr>
+</table></div>`},
+{t:"Molecules & vermifugation raisonnee",c:`<div class="table-wrap"><table>
+<tr><th>Molecule</th><th>Spectre</th><th>Remarques</th></tr>
+<tr><td><strong>Fenbendazole</strong></td><td>Nematodes</td><td class="red">Resistance frequente</td></tr>
+<tr><td><strong>Pyrantel</strong></td><td>Nematodes + cestodes (x2)</td><td>Peu de resistance</td></tr>
+<tr><td><strong>Ivermectine</strong></td><td>Nematodes + gastero</td><td>ERP = 8 sem</td></tr>
+<tr><td><strong>Moxidectine</strong></td><td>+ larves</td><td>ERP = 12 sem. CI &lt;4 mois</td></tr>
+<tr><td><strong>Praziquantel</strong></td><td>Cestodes</td><td>Automne</td></tr>
+</table></div>
+<h4>Protocole AAEP 2013</h4>
+<div class="table-wrap"><table>
+<tr><th>Saison</th><th>Traitement</th></tr>
+<tr><td>Printemps</td><td>Lactone macrocyclique</td></tr>
+<tr><td>Ete</td><td>+/- Pyrantel (si copro &gt; 200 opg)</td></tr>
+<tr><td>Automne</td><td>Lactone macro + praziquantel</td></tr>
+</table></div>
+<p><strong>Vermifugation selective</strong> : copro &gt; 200 opg = traiter. 20% des chevaux = 80% des parasites.</p>`}
+]},
+
+{id:"denti",title:"Dentisterie equine",cat:"Locomotion",src:"E. Perrault, ENVT",sections:[
+{t:"Anatomie dentaire",c:`<ul><li>Dent hypsodonte : couronne longue, croissance 2-4 mm/an</li>
+<li>Durete : <strong>email &gt; dentine &gt; cement</strong></li></ul>
+<h4>Formule Triadan</h4>
+<div class="table-wrap"><table>
+<tr><th>Type</th><th>Nombre</th><th>Triadan</th></tr>
+<tr><td>Incisives</td><td>12</td><td>x01-x03</td></tr>
+<tr><td>Canines</td><td>0-4</td><td>x04</td></tr>
+<tr><td>Dents de loup</td><td>0-2</td><td>x05</td></tr>
+<tr><td>Premolaires</td><td>12</td><td>x06-x08</td></tr>
+<tr><td>Molaires</td><td>12</td><td>x09-x11</td></tr>
+</table></div>
+<p>Total : <strong>36 a 44 dents</strong>. Arcades 100/200 sup, 300/400 inf.</p>`},
+{t:"Particularites & pathologies",c:`<h4>Anisognathie</h4>
+<p>Maxillaires <strong>30% + large</strong> &rarr; surdents (pointes buccales haut, linguales bas)</p>
+<h4>Dents de loup (105/205)</h4>
+<p>40-80% des chevaux. Gene le mors &rarr; extraction frequente.</p>
+<h4>Pathologies</h4>
+<ul><li><strong>Caries</strong> : + frequentes 109/209 (infundibulaires)</li>
+<li><strong>EOTRH</strong> : cheval &gt; 15 ans, incisives. Radio + extraction</li>
+<li><strong>Diastema</strong> : bourrage alimentaire &rarr; periodontite</li></ul>`}
+]},
+
+{id:"aplombs",title:"Aplombs du cheval",cat:"Locomotion",src:"A. Lorrick, ENVT",sections:[
+{t:"Structure podale",c:`<div class="table-wrap"><table>
+<tr><th>Structure</th><th>Description</th></tr>
+<tr><td>Pince</td><td>Partie anterieure/dorsale</td></tr>
+<tr><td>Quartier</td><td>Parties laterales</td></tr>
+<tr><td>Talon</td><td>Partie posterieure</td></tr>
+<tr><td>Fourchette</td><td>Structure en V, amortissement</td></tr>
+<tr><td>Sole</td><td>Epaisseur 7mm a 1cm</td></tr>
+<tr><td>Ligne blanche</td><td>Jonction paroi/sole, zone clouage</td></tr>
+</table></div>`},
+{t:"Defauts d'aplombs",c:`<h4>Plan frontal</h4>
+<div class="table-wrap"><table>
+<tr><th>Defaut</th><th>Direction</th><th>Equiv.</th></tr>
+<tr><td><strong>Panard</strong></td><td>Pieds en dehors</td><td>Valgus</td></tr>
+<tr><td><strong>Cagneux</strong></td><td>Pieds en dedans</td><td>Varus</td></tr>
+</table></div>
+<h4>Plan sagittal</h4>
+<div class="table-wrap"><table>
+<tr><th>Defaut</th><th>Consequence</th></tr>
+<tr><td>Campe du devant</td><td>Surcharge talons</td></tr>
+<tr><td>Sous-lui</td><td>Surcharge pince</td></tr>
+<tr><td>Long-jointe</td><td>Surcharge tendons</td></tr>
+<tr><td>Court-jointe</td><td>Concussions articulaires</td></tr>
+</table></div>
+<h4>Pied bot vs Pied plat</h4>
+<div class="table-wrap"><table>
+<tr><th></th><th>Pied bot</th><th>Pied plat</th></tr>
+<tr><td>Angle</td><td>&gt; 60&deg;</td><td>&lt; 45&deg;</td></tr>
+<tr><td>Talons</td><td>Hauts, contractes</td><td>Fuyants, bas</td></tr>
+<tr><td>TFPD</td><td>Retracte</td><td>Relache</td></tr>
+</table></div>`}
+]},
+
+{id:"ferrures",title:"Ferrures kinesitherapeutiques",cat:"Locomotion",src:"E. Lallemand, ENVT",sections:[
+{t:"Principes & types",c:`<ul><li>Ferrure <strong>temporaire</strong> (sauf defaut d'aplomb avere)</li>
+<li>Fer normal du <strong>cote sain</strong></li>
+<li><strong>Le terrain fait partie de la prescription</strong></li></ul>
+<div class="table-wrap"><table>
+<tr><th>Ferrure</th><th>Principe</th><th>Indications</th></tr>
+<tr><td><strong>Rolling</strong></td><td>Faciliter bascule</td><td>AIPD, AIPP</td></tr>
+<tr><td><strong>Couverture talons</strong></td><td>Soutien palmaire</td><td>TFPD, naviculaire</td></tr>
+<tr><td><strong>Couverture pince</strong></td><td>Enfoncer talons</td><td>LSB, TFSD</td></tr>
+<tr><td><strong>Fer asymetrique</strong></td><td>Support lateral</td><td>Valgus/varus</td></tr>
+<tr><td><strong>Fer en M</strong></td><td>Decharger pince</td><td>Fourbure</td></tr>
+<tr><td><strong>Compromise shoe</strong></td><td>Double action</td><td>LSB + TFPD</td></tr>
+</table></div>`},
+{t:"Tableau decisionnel",c:`<div class="table-wrap"><table>
+<tr><th>Lesion</th><th>Ferrure</th></tr>
+<tr><td>AIPD / AIPP</td><td>Rolling</td></tr>
+<tr><td>TFPD / naviculaire</td><td>Couverture talons</td></tr>
+<tr><td>LSB / TFSD</td><td>Couverture pince</td></tr>
+<tr><td>Valgus (panard)</td><td>Asym. couvert interne</td></tr>
+<tr><td>Varus (cagneux)</td><td>Asym. couvert externe</td></tr>
+<tr><td>Fourbure</td><td>Fer en M / coeur</td></tr>
+</table></div>`}
+]}
+];
+
+const CATS=[...new Set(FICHES.map(f=>f.cat))];
+const tabsEl=document.getElementById('catTabs');
+const gridEl=document.getElementById('ficheGrid');
+const viewsEl=document.getElementById('ficheViews');
+const searchInput=document.getElementById('searchInput');
+const searchResults=document.getElementById('searchResults');
+
+CATS.forEach((c,i)=>{
+  const b=document.createElement('button');
+  b.className='cat-tab'+(i===0?' active':'');
+  const n=FICHES.filter(f=>f.cat===c).length;
+  b.innerHTML=c+'<span class="count">'+n+'</span>';
+  b.onclick=()=>showCat(c);
+  tabsEl.appendChild(b);
+});
+
+FICHES.forEach(f=>{
+  const card=document.createElement('div');
+  card.className='fiche-card';
+  card.dataset.cat=f.cat;
+  card.dataset.id=f.id;
+  card.innerHTML=`<h3>${f.title}</h3><p class="src">${f.src}</p><span class="tag">${f.cat}</span>`;
+  card.onclick=()=>showFiche(f.id);
+  gridEl.appendChild(card);
+
+  const view=document.createElement('div');
+  view.className='fiche-view';
+  view.id='view-'+f.id;
+  let h=`<button class="back-btn" onclick="closeFiche()">&larr; Retour</button>
+    <h2>${f.title}</h2><p class="meta">${f.src}</p>`;
+  f.sections.forEach(s=>{
+    h+=`<button class="section-toggle" onclick="toggleSection(this)">
+      ${s.t}<span class="arrow">&#9654;</span></button>
+      <div class="section-content">${s.c}</div>`;
+  });
+  view.innerHTML=h;
+  viewsEl.appendChild(view);
+});
+
+function showCat(cat){
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.toggle('active',t.textContent.includes(cat)));
+  document.querySelectorAll('.fiche-card').forEach(c=>{c.hidden=c.dataset.cat!==cat});
+  gridEl.hidden=false;
+  searchResults.hidden=true;
+  closeFiche();
+}
+
+function showFiche(id){
+  gridEl.hidden=true;
+  tabsEl.hidden=true;
+  document.querySelectorAll('.fiche-view').forEach(v=>v.classList.remove('active'));
+  const v=document.getElementById('view-'+id);
+  v.classList.add('active');
+  const first=v.querySelector('.section-toggle');
+  if(first&&!first.classList.contains('open'))toggleSection(first);
+  window.scrollTo(0,0);
+}
+
+function closeFiche(){
+  document.querySelectorAll('.fiche-view').forEach(v=>v.classList.remove('active'));
+  gridEl.hidden=false;
+  tabsEl.hidden=false;
+  window.scrollTo(0,0);
+}
+
+function toggleSection(btn){
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+searchInput.addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  if(q.length<2){
+    searchResults.hidden=true;
+    gridEl.hidden=false;
+    tabsEl.hidden=false;
+    closeFiche();
+    return;
+  }
+  gridEl.hidden=true;
+  tabsEl.hidden=true;
+  document.querySelectorAll('.fiche-view').forEach(v=>v.classList.remove('active'));
+  searchResults.hidden=false;
+  searchResults.innerHTML='';
+  let res=[];
+  FICHES.forEach(f=>{
+    f.sections.forEach(s=>{
+      const text=s.c.replace(/<[^>]+>/g,'');
+      const idx=text.toLowerCase().indexOf(q);
+      if(idx!==-1||s.t.toLowerCase().includes(q)){
+        const start=Math.max(0,idx-40);
+        const end=Math.min(text.length,idx+q.length+60);
+        let ctx=(start>0?'...':'')+text.slice(start,end)+(end<text.length?'...':'');
+        ctx=ctx.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+        res.push({fiche:f,section:s,ctx,title:f.title});
+      }
+    });
+  });
+  if(!res.length){
+    searchResults.innerHTML='<div class="no-results">Aucun resultat pour "'+q+'"</div>';
+    return;
+  }
+  res.slice(0,20).forEach(r=>{
+    const d=document.createElement('div');
+    d.className='search-result';
+    d.innerHTML=`<span class="fiche-name">${r.title}</span><h4>${r.section.t}</h4><p class="ctx">${r.ctx}</p>`;
+    d.onclick=()=>{
+      searchInput.value='';
+      searchResults.hidden=true;
+      showFiche(r.fiche.id);
+      const view=document.getElementById('view-'+r.fiche.id);
+      view.querySelectorAll('.section-toggle').forEach(t=>{
+        if(t.textContent.includes(r.section.t)&&!t.classList.contains('open'))toggleSection(t);
+      });
+    };
+    searchResults.appendChild(d);
+  });
+});
+
+showCat(CATS[0]);
+</script>
+</body>
+</html>

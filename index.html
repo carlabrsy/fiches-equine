@@ -1490,7 +1490,7 @@ const DRUGS=[
 {cat:"Anti-inflammatoires",name:"Phenylbutazone",dmin:2.2,dmax:2.2,unit:"mg/kg",route:"IV, PO",freq:"q12-24h",conc:200,pres:"Phenylarthrite 200 mg/mL IV ; Equipalazone sachet PO",notes:"Exclusion conso humaine. Analgesie ++ fourbures."},
 {cat:"Anti-inflammatoires",name:"Ketoprofene",dmin:2.2,dmax:2.2,unit:"mg/kg",route:"IV",freq:"q24h",conc:100,pres:"Ketodolor 100 mg/mL",notes:"COX-1 selectif (moins selectif que firocoxib)."},
 {cat:"Anti-inflammatoires",name:"Meloxicam",dmin:0.6,dmax:0.6,unit:"mg/kg",route:"IV, IM, PO",freq:"q12h IV / q12-24h PO",conc:20,pres:"Rheumocam 20 mg/mL IV ; 15 mg/mL PO",notes:"COX-2 selectif. Dose attaque 0.3 mg/kg."},
-{cat:"Anti-inflammatoires",name:"Firocoxib (Previcox)",dmin:0.1,dmax:0.1,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Previcox 57 mg (0.2 cp/100kg, 1 cp/500kg)",notes:"COX-2 selectif +++. Dose attaque 0.3 mg/kg (3 cp)."},
+{cat:"Anti-inflammatoires",name:"Firocoxib (Previcox)",dmin:0.1,dmax:0.1,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Previcox 57 mg (0.2 cp/100kg, 1 cp/500kg)",notes:"COX-2 selectif +++. Dose attaque 0.3 mg/kg (3 cp).",tabs:57,tabUnit:"cp"},
 {cat:"Anti-inflammatoires",name:"Dipyrone (Noramidopyrine)",dmin:23,dmax:23,unit:"mg/kg",route:"IV, IM",freq:"q12-24h",conc:460,pres:"Calmagine / Dipyralgine",notes:"Antispasmodique-antipyretique."},
 {cat:"Anti-inflammatoires",name:"Dexamethasone",dmin:0.05,dmax:0.1,unit:"mg/kg",route:"IV, IM",freq:"q24h",conc:2,pres:"Dexadrezon/Dexalone 2 mg/mL",notes:"Inflammation pulmonaire (asthme), digestive, nerveuse. Attention fourbure. Dexafort IM: 0.06 mg/kg q96h."},
 {cat:"Anti-inflammatoires",name:"Prednisolone",dmin:1,dmax:1,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Equisolon 33 mg/g (1 dose = 4.6 g)",notes:"3 g/100 kg."},
@@ -1510,12 +1510,12 @@ const DRUGS=[
 {cat:"Antibiotiques",name:"Penicilline procaine",dmin:22000,dmax:22000,unit:"UI/kg",route:"IM",freq:"q12-24h",conc:300000,pres:"Depocilline/Duplocilline/Shotapen",notes:"IM stricte. Duplocilline q48h, Depocilline q12-24h. Bien secouer.",isUI:true},
 {cat:"Antibiotiques",name:"Gentamicine",dmin:6.6,dmax:6.6,unit:"mg/kg",route:"IV",freq:"q24h",conc:100,pres:"G4 / Vetrigen",notes:"Nephrotoxique. Gram-."},
 {cat:"Antibiotiques",name:"TMS (trimethoprime-sulfa)",dmin:25,dmax:25,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Avemix poudre (20g/100kg, 5 mesures)",notes:"Diarrhee possible. Borgal 24%: 15 mg/kg IV lente q12-24h. Ne pas donner IV avec alpha-2 (choc)."},
-{cat:"Antibiotiques",name:"Metronidazole",dmin:15,dmax:25,unit:"mg/kg",route:"PO, PR",freq:"q8h (15 mg/kg PO) / q12h (25 mg/kg PO)",conc:0,pres:"Poudre ; cp 250/500 mg",notes:"Interdit si non exclu conso humaine. Anorexie si PO. PR: 30 mg/kg q8h."},
+{cat:"Antibiotiques",name:"Metronidazole",dmin:15,dmax:25,unit:"mg/kg",route:"PO, PR",freq:"q8h (15 mg/kg PO) / q12h (25 mg/kg PO)",conc:0,pres:"Poudre ; cp 250/500 mg",notes:"Interdit si non exclu conso humaine. Anorexie si PO. PR: 30 mg/kg q8h.",tabs:500,tabUnit:"cp"},
 {cat:"Antibiotiques",name:"Ceftiofur",dmin:2.2,dmax:2.2,unit:"mg/kg",route:"IV, IM",freq:"q12h",conc:50,pres:"Excenel 50 mg/mL",notes:"ATB critique. Cephalosporine 3G."},
 {cat:"Antibiotiques",name:"Enrofloxacine",dmin:7.5,dmax:7.5,unit:"mg/kg",route:"PO",freq:"q24h",conc:100,pres:"Baytril 10%",notes:"ATB critique. Risque arthrite si <4-5 ans."},
 {cat:"Antibiotiques",name:"Marbofloxacine",dmin:2,dmax:2,unit:"mg/kg",route:"IM",freq:"q24h",conc:100,pres:"Marbox 100 mg/mL",notes:"ATB critique."},
 {cat:"Antibiotiques",name:"Doxycycline",dmin:10,dmax:10,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Doxyval 20% (5g/100kg)",notes:"Ehrlichiose, Lyme. Effet anticollagenases (yeux)."},
-{cat:"Antibiotiques",name:"Minocycline",dmin:4,dmax:4,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Mynocine 100 (4 cp/100kg)",notes:"Neuroborreliose."},
+{cat:"Antibiotiques",name:"Minocycline",dmin:4,dmax:4,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Mynocine 100 (4 cp/100kg)",notes:"Neuroborreliose.",tabs:100,tabUnit:"cp"},
 {cat:"Antibiotiques",name:"Oxytetracycline",dmin:5,dmax:10,unit:"mg/kg",route:"IV lente",freq:"q12-24h",conc:100,pres:"Oxytetracycline 10%",notes:"Ehrlichiose, Lyme, Salmonellose. Nephrotoxique."},
 {cat:"Antibiotiques",name:"Imidocarbe",dmin:2,dmax:2,unit:"mg/kg",route:"IM",freq:"2 inj a 48h intervalle",conc:0,pres:"Carbesia (2.5 ml/100kg)",notes:"IM profonde (semitendineux), 2 points injection. Coliques spasmodiques (donner AINS/Spasmizole)."},
 // ANTIPARASITAIRES
@@ -1527,17 +1527,17 @@ const DRUGS=[
 // DIGESTIF
 {cat:"Digestif",name:"Omeprazole",dmin:2,dmax:4,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Pepticure / Equinor",notes:"Ulceres muqueuse squameuse. Donner 1h avant ration. Prevention: 1 mg/kg."},
 {cat:"Digestif",name:"Ranitidine",dmin:1.5,dmax:1.5,unit:"mg/kg",route:"IV",freq:"q6h",conc:25,pres:"Azantac 25 mg/mL",notes:"Ulceres muqueuse squameuse. Cher."},
-{cat:"Digestif",name:"Sucralfate",dmin:20,dmax:20,unit:"mg/kg",route:"PO",freq:"q6-8h",conc:0,pres:"Keal sachets 2g (2 g/100kg)",notes:"Ulceres muqueuse glandulaire."},
+{cat:"Digestif",name:"Sucralfate",dmin:20,dmax:20,unit:"mg/kg",route:"PO",freq:"q6-8h",conc:0,pres:"Keal sachets 2g (2 g/100kg)",notes:"Ulceres muqueuse glandulaire.",tabs:2000,tabUnit:"sachet"},
 {cat:"Digestif",name:"Dipyrone + Butylscopolamine",dmin:0.1,dmax:0.3,unit:"mg/kg",route:"IV",freq:"q12-24h",conc:4,pres:"Estocelan / Spasmizole",notes:"Antispasmodique ++. Dose = composante scopolamine (4-5 ml/100kg)."},
 {cat:"Digestif",name:"Lidocaine (prokinetique)",dmin:1.3,dmax:1.3,unit:"mg/kg",route:"IV bolus puis CRI 0.05 mg/kg/min",freq:"",conc:16,pres:"Laocaine 16 mg/mL",notes:"Prokinetique, antalgique visceral, anti-endotoxemique. CRI: 94 ml/h pour 500kg. 9 flacons 250 mL/24h."},
 {cat:"Digestif",name:"Metoclopramide",dmin:0.2,dmax:0.2,unit:"mg/kg",route:"IV",freq:"q4-6h",conc:5,pres:"Primperan 5 mg/mL",notes:"Prokinetique (vidange gastrique). Diluer dans 1L NaCl, passer sur 1h. CRI: 0.04 mg/kg/h."},
 {cat:"Digestif",name:"Lactulose",dmin:0.3,dmax:0.3,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Duphalac (0.2 ml/kg, 100 ml/500kg)",notes:"Hyperammoniemie (digestive, hepatique)."},
-{cat:"Digestif",name:"Metformine",dmin:25,dmax:30,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Metformine 1000 mg (3 cp/100kg)",notes:"Syndrome metabolique. Attention ulcerations buccales/gastriques."},
+{cat:"Digestif",name:"Metformine",dmin:25,dmax:30,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Metformine 1000 mg (3 cp/100kg)",notes:"Syndrome metabolique. Attention ulcerations buccales/gastriques.",tabs:1000,tabUnit:"cp"},
 {cat:"Digestif",name:"Paraffine",dmin:10,dmax:10,unit:"ml/kg",route:"SNG",freq:"q24h",conc:0,pres:"Bidon 5L (1 L/100 kg, 5 L/500 kg)",notes:"Stase GI (non deplace)."},
 {cat:"Digestif",name:"Sulfate de Magnesium (SNG)",dmin:1,dmax:1,unit:"g/kg",route:"SNG",freq:"q24-48h",conc:0,pres:"Poudre (100 g/100 kg, 500 g/500 kg)",notes:"Stase GI/caecum."},
 {cat:"Digestif",name:"Psyllium (Sandclear)",dmin:1,dmax:1,unit:"g/kg",route:"SNG",freq:"q24-48h",conc:0,pres:"Sandclear (100 g/100 kg, 500 g/500 kg)",notes:"Sablose."},
-{cat:"Digestif",name:"Loperamide",dmin:0.08,dmax:0.16,unit:"mg/kg",route:"PO",freq:"q6h",conc:0,pres:"Imodium 2 mg (4-8 gel/100kg)",notes:"Anti-secretoire (diarrhees)."},
-{cat:"Digestif",name:"Racecadotril",dmin:1,dmax:1,unit:"mg/kg",route:"PO",freq:"q8h",conc:0,pres:"Tiorfan 100 mg (1 gel/100kg)",notes:"Anti-secretoire (diarrhees)."},
+{cat:"Digestif",name:"Loperamide",dmin:0.08,dmax:0.16,unit:"mg/kg",route:"PO",freq:"q6h",conc:0,pres:"Imodium 2 mg (4-8 gel/100kg)",notes:"Anti-secretoire (diarrhees).",tabs:2,tabUnit:"gelule"},
+{cat:"Digestif",name:"Racecadotril",dmin:1,dmax:1,unit:"mg/kg",route:"PO",freq:"q8h",conc:0,pres:"Tiorfan 100 mg (1 gel/100kg)",notes:"Anti-secretoire (diarrhees).",tabs:100,tabUnit:"gelule"},
 {cat:"Digestif",name:"Phenylephrine",dmin:0.04,dmax:0.04,unit:"mg/kg",route:"IV",freq:"",conc:100,pres:"Neosynephrine 10% (0.04 ml/100kg)",notes:"Entrappement nephro-splenique. 20 mg dans 250 ml NaCl sur 15 min puis trot/galop."},
 // RESPIRATOIRE
 {cat:"Respiratoire",name:"Clenbuterol",dmin:0.0008,dmax:0.0008,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Dilaterol 22 ug/mL (3.6 ml/100kg, 18 ml/500kg)",notes:"Bronchodilatateur. Associer corticoides."},
@@ -1550,17 +1550,17 @@ const DRUGS=[
 {cat:"Cardio-vasculaire",name:"Furosemide",dmin:1,dmax:2,unit:"mg/kg",route:"IV",freq:"q8-12-24h",conc:50,pres:"Dimazon 50 mg/mL",notes:"Oedeme cardiogenique, pulmonaire."},
 {cat:"Cardio-vasculaire",name:"Enoxaparine",dmin:0.5,dmax:0.5,unit:"mg/kg",route:"SC",freq:"q24h",conc:0,pres:"Lovenox (1 seringue 5000 UI / 200 kg)",notes:"Prevention fourbure, endotoxemie."},
 {cat:"Cardio-vasculaire",name:"Acide tranexamique",dmin:10,dmax:25,unit:"mg/kg",route:"IV lente",freq:"q12h",conc:0,pres:"Exacyl (10-25 ml/100kg)",notes:"Anti-fibrinolytique (hemorragie)."},
-{cat:"Cardio-vasculaire",name:"Sotalol",dmin:2,dmax:4,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Sotalex 160 mg (1.25-2.5 cp/100kg)",notes:"Arythmie supra-ventriculaire et ventriculaire."},
+{cat:"Cardio-vasculaire",name:"Sotalol",dmin:2,dmax:4,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Sotalex 160 mg (1.25-2.5 cp/100kg)",notes:"Arythmie supra-ventriculaire et ventriculaire.",tabs:160,tabUnit:"cp"},
 {cat:"Cardio-vasculaire",name:"Digoxine",dmin:0.0022,dmax:0.0022,unit:"mg/kg",route:"IV",freq:"q24h",conc:0.25,pres:"Digoxine 0.25 mg/mL",notes:"Insuffisance cardiaque congestive. FA (+ quinidine). PO: 10 mg/kg q12h (harper 10j)."},
 {cat:"Cardio-vasculaire",name:"Quinidine",dmin:22,dmax:22,unit:"mg/kg",route:"PO",freq:"q2h",conc:0,pres:"Poudre/solution",notes:"FA. Reussite ~85%."},
-{cat:"Cardio-vasculaire",name:"Aspirine",dmin:5,dmax:20,unit:"mg/kg",route:"PO",freq:"q12-24h",conc:0,pres:"Aspegic 1000 (2 g/100kg)",notes:"Effet anti-Thromboxane B2. Pas d'effet anti-coagulant."},
+{cat:"Cardio-vasculaire",name:"Aspirine",dmin:5,dmax:20,unit:"mg/kg",route:"PO",freq:"q12-24h",conc:0,pres:"Aspegic 1000 (2 g/100kg)",notes:"Effet anti-Thromboxane B2. Pas d'effet anti-coagulant.",tabs:1000,tabUnit:"sachet"},
 {cat:"Cardio-vasculaire",name:"Magnophos (Mg/Ca)",dmin:0.6,dmax:1.3,unit:"mg/kg",route:"IV, IM",freq:"q2-3j",conc:0,pres:"Magnophos (2-4 ml/100kg)",notes:"Hypomagnesemie, hypocalcemie."},
 // MUSCULAIRE / NEUROLOGIQUE
 {cat:"Musculaire / Neuro",name:"Vitamine E",dmin:2,dmax:16,unit:"UI/kg",route:"PO",freq:"q12-24h",conc:0,pres:"Vitamine E 2000 (50g = 3000 UI)",notes:"~1000 UI/j myosite simple ; 5000-8000 UI/j maladie neurone moteur (diviser matin/soir).",isUI:true},
 {cat:"Musculaire / Neuro",name:"Selenium + Vit E (Myophos)",dmin:0.066,dmax:0.066,unit:"mg/kg",route:"IM stricte",freq:"2 inj a 8j intervalle",conc:0,pres:"Myophos Se 0.46 mg/mL (5 ml/100kg, 25 ml)",notes:"Jamais en IV! Pas dans l'encolure. Ajouter Vit E PO."},
-{cat:"Musculaire / Neuro",name:"Thiocolchicoside",dmin:0.048,dmax:0.048,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Thiocolchicoside 4 mg (1 cp/100kg, 6 cp)",notes:"Relaxant musculaire."},
+{cat:"Musculaire / Neuro",name:"Thiocolchicoside",dmin:0.048,dmax:0.048,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Thiocolchicoside 4 mg (1 cp/100kg, 6 cp)",notes:"Relaxant musculaire.",tabs:4,tabUnit:"cp"},
 {cat:"Musculaire / Neuro",name:"DMSO",dmin:0.5,dmax:1,unit:"g/kg",route:"IV lente",freq:"q12h 3j puis q24h 2j",conc:0,pres:"DMSO pur 99% (100 ml/100kg, 500 ml)",notes:"Troubles neuro centraux. Diluer a 10% dans 5L RL, sur 2h. Hemolyse intravasculaire."},
-{cat:"Musculaire / Neuro",name:"Gabapentine",dmin:20,dmax:60,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Gabapentine cp 800 mg (3-8 cp/100kg)",notes:"Analgesique central. Ecraser et melanger a de l'huile."},
+{cat:"Musculaire / Neuro",name:"Gabapentine",dmin:20,dmax:60,unit:"mg/kg",route:"PO",freq:"q12h",conc:0,pres:"Gabapentine cp 800 mg (3-8 cp/100kg)",notes:"Analgesique central. Ecraser et melanger a de l'huile.",tabs:800,tabUnit:"cp"},
 // GENITO-URINAIRE
 {cat:"Genito-urinaire",name:"Clenbuterol (uterin)",dmin:0.0007,dmax:0.0007,unit:"mg/kg",route:"IV lente",freq:"q12h",conc:0,pres:"Ventipulmin (2.6 ml/100kg, 13 ml)",notes:"Inhibe contractions uterines."},
 {cat:"Genito-urinaire",name:"Altrenogest",dmin:0.044,dmax:0.044,unit:"mg/kg",route:"PO",freq:"q24h",conc:0,pres:"Regumate (2 ml/100kg, 10 ml)",notes:"Retrait chaleurs. Maintien gestation."},
@@ -1635,16 +1635,26 @@ function calculate(){
     const vMin=doseMin/d.conc;
     const vMax=doseMax/d.conc;
     volStr=vMin===vMax
-      ? `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} mL</span><div class="detail">Volume a administrer (${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`
-      : `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} - ${vMax.toFixed(vMax<1?2:1)} mL</span><div class="detail">Volume a administrer (${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`;
+      ? `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} mL</span><div class="detail">Volume a administrer (concentration : ${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`
+      : `<br><span class="big">${vMin.toFixed(vMin<1?2:1)} - ${vMax.toFixed(vMax<1?2:1)} mL</span><div class="detail">Volume a administrer (concentration : ${d.conc} ${d.isUI?'UI':'mg'}/mL)</div>`;
+  }
+
+  let tabStr='';
+  if(d.tabs>0){
+    const tMin=doseMin/d.tabs;
+    const tMax=doseMax/d.tabs;
+    const fmtTab=(v)=>Number.isInteger(v)?v:v.toFixed(1);
+    tabStr=tMin===tMax
+      ? `<br><span class="big">${fmtTab(tMin)} ${d.tabUnit}</span><div class="detail">${d.tabUnit} de ${d.tabs} ${d.isUI?'UI':'mg'}</div>`
+      : `<br><span class="big">${fmtTab(tMin)} - ${fmtTab(tMax)} ${d.tabUnit}</span><div class="detail">${d.tabUnit} de ${d.tabs} ${d.isUI?'UI':'mg'}</div>`;
   }
 
   let html=`<div class="calc-result">
     <span class="big">${doseStr}</span>
     <div class="detail">Dose totale pour ${w} kg | ${d.route}</div>
-    ${volStr}`;
+    ${volStr}${tabStr}`;
   if(d.freq) html+=`<div class="detail">Frequence : ${d.freq}</div>`;
-  html+=`<div class="calc-drug-info"><strong>${d.pres}</strong><br>${d.notes||''}</div>`;
+  html+=`<div class="calc-drug-info"><strong>Presentation : ${d.pres}</strong><br>${d.notes||''}</div>`;
   html+=`<div class="warn">Verifier poids, espece, voie et concentration avant administration.</div></div>`;
   calcResult.innerHTML=html;
 }

@@ -476,12 +476,12 @@ const FICHES=[
 <blockquote>Un cheval est <strong>TOUJOURS deplacable</strong>. Ne pas attendre.</blockquote>`},
 {t:"Traitement medical",c:`<h4>Analgesie</h4>
 <div class="table-wrap"><table>
-<tr><th>Molecule</th><th>Dose</th><th>Voie</th><th>Duree</th></tr>
-<tr><td><strong>Metamizole</strong></td><td>5-22 mg/kg</td><td>IV/IM</td><td>2h</td></tr>
-<tr><td><strong>Buscopan</strong></td><td>0.2 mg/kg</td><td>IV</td><td>4h</td></tr>
-<tr><td><strong>Detomidine</strong></td><td>10-20 mcg/kg</td><td>IV</td><td>1h</td></tr>
-<tr><td><strong>Flunixine</strong></td><td>0.25-1.1 mg/kg</td><td>IV</td><td>6-12h</td></tr>
-<tr><td><strong>Butorphanol</strong></td><td>0.01-0.04 mg/kg</td><td>IV</td><td>4h</td></tr>
+<tr><th>Molecule</th><th>Dose</th><th>Presentation</th><th>Voie</th><th>Duree</th></tr>
+<tr><td><strong>Metamizole</strong></td><td>5-22 mg/kg</td><td>500 mg/mL (Novalgine)</td><td>IV/IM</td><td>2h</td></tr>
+<tr><td><strong>Buscopan</strong></td><td>0.2 mg/kg</td><td>20 mg/mL (N-butylscopolamine)</td><td>IV</td><td>4h</td></tr>
+<tr><td><strong>Detomidine</strong></td><td>10-20 mcg/kg</td><td>10 mg/mL (Domosedan)</td><td>IV</td><td>1h</td></tr>
+<tr><td><strong>Flunixine</strong></td><td>0.25-1.1 mg/kg</td><td>50 mg/mL (Finadyne)</td><td>IV</td><td>6-12h</td></tr>
+<tr><td><strong>Butorphanol</strong></td><td>0.01-0.04 mg/kg</td><td>10 mg/mL (Torbugesic)</td><td>IV</td><td>4h</td></tr>
 </table></div>
 <blockquote class="red">Eviter flunixine si on envisage de referer : masque les signes CV pendant 6h</blockquote>
 <h4>Laxatifs (par sonde)</h4>
@@ -516,27 +516,27 @@ const FICHES=[
 </table></div>`},
 {t:"Sedation debout",c:`<h4>Alpha2-agonistes</h4>
 <div class="table-wrap"><table>
-<tr><th>Molecule</th><th>Pic IV</th><th>Duree IV</th><th>Duree IM</th></tr>
-<tr><td><strong>Xylazine</strong></td><td>3-5 min</td><td>10-40 min</td><td>40-60 min</td></tr>
-<tr><td><strong>Romifidine</strong></td><td>3-5 min</td><td>20-60 min</td><td>40-80 min</td></tr>
-<tr><td><strong>Detomidine</strong></td><td>5-10 min</td><td>30-80 min</td><td>60-120 min</td></tr>
+<tr><th>Molecule</th><th>Presentation</th><th>Pic IV</th><th>Duree IV</th><th>Duree IM</th></tr>
+<tr><td><strong>Xylazine</strong></td><td>20 mg/mL (Rompun 2%)</td><td>3-5 min</td><td>10-40 min</td><td>40-60 min</td></tr>
+<tr><td><strong>Romifidine</strong></td><td>10 mg/mL (Sedivet)</td><td>3-5 min</td><td>20-60 min</td><td>40-80 min</td></tr>
+<tr><td><strong>Detomidine</strong></td><td>10 mg/mL (Domosedan)</td><td>5-10 min</td><td>30-80 min</td><td>60-120 min</td></tr>
 </table></div>
 <ul><li>Effet plafond : sedation &gt; analgesie &rarr; ajouter opiode</li>
 <li><strong>Ne jamais melanger 2 alpha2 differents</strong></li></ul>
 <h4>Opiodes</h4>
 <div class="table-wrap"><table>
-<tr><th>Molecule</th><th>Dose</th><th>Duree</th></tr>
-<tr><td><strong>Butorphanol</strong></td><td>0.01-0.02 mg/kg</td><td>10-40 min</td></tr>
-<tr><td><strong>Morphine</strong></td><td>0.1-0.2 mg/kg</td><td>~4h</td></tr>
-<tr><td><strong>Buprenorphine</strong></td><td>0.005-0.01 mg/kg</td><td>5-8h</td></tr>
+<tr><th>Molecule</th><th>Dose</th><th>Presentation</th><th>Duree</th></tr>
+<tr><td><strong>Butorphanol</strong></td><td>0.01-0.02 mg/kg</td><td>10 mg/mL (Torbugesic)</td><td>10-40 min</td></tr>
+<tr><td><strong>Morphine</strong></td><td>0.1-0.2 mg/kg</td><td>10 mg/mL</td><td>~4h</td></tr>
+<tr><td><strong>Buprenorphine</strong></td><td>0.005-0.01 mg/kg</td><td>0.3 mg/mL (Buprecare)</td><td>5-8h</td></tr>
 </table></div>
 <p>Butorphanol permet de diminuer de <strong>30%</strong> la dose d'alpha2</p>`},
 {t:"Induction & entretien",c:`<h4>Protocole standard</h4>
 <div class="table-wrap"><table>
-<tr><th>Etape</th><th>Molecule</th><th>Dose IV</th></tr>
-<tr><td>Premed</td><td>Alpha2 + opiode</td><td>Voir sedation</td></tr>
-<tr><td>Induction</td><td><strong>Diazepam</strong></td><td>0.04-0.1 mg/kg</td></tr>
-<tr><td></td><td><strong>Ketamine</strong></td><td>2-2.5 mg/kg</td></tr>
+<tr><th>Etape</th><th>Molecule</th><th>Dose IV</th><th>Presentation</th></tr>
+<tr><td>Premed</td><td>Alpha2 + opiode</td><td>Voir sedation</td><td></td></tr>
+<tr><td>Induction</td><td><strong>Diazepam</strong></td><td>0.04-0.1 mg/kg</td><td>5 mg/mL (Valium)</td></tr>
+<tr><td></td><td><strong>Ketamine</strong></td><td>2-2.5 mg/kg</td><td>100 mg/mL (Imalgene)</td></tr>
 </table></div>
 <blockquote><strong>Un cheval qui s'endort mal se reveillera mal</strong></blockquote>
 <h4>Triple Drip (~1h d'anesthesie)</h4>
@@ -555,7 +555,7 @@ const FICHES=[
 <tr><td><strong>FC</strong></td><td>ECG/pouls</td><td>Variable</td></tr>
 </table></div>`},
 {t:"Complications",c:`<h4>Hypotension (la + frequente)</h4>
-<p><strong>Dobutamine</strong> perfusion continue (adulte) | Ephedrine bolus (poulain)</p>
+<p><strong>Dobutamine</strong> 1-5 µg/kg/min perfusion continue (fl. 250 mg/20 mL, diluer dans NaCl 0.9%) | <strong>Ephédrine</strong> 0.01-0.02 mg/kg IV bolus (amp. 30 mg/mL) (poulain)</p>
 <h4>Complications au reveil</h4>
 <div class="table-wrap"><table>
 <tr><th>Complication</th><th>Conduite</th></tr>
@@ -566,10 +566,11 @@ const FICHES=[
 {t:"Protocoles pratiques (500 kg)",c:`<h4>Castration debout</h4>
 <div class="table-wrap"><table>
 <tr><th>Etape</th><th>Molecule</th><th>Dose</th></tr>
-<tr><td>J-20 min</td><td>ACP</td><td>0.01 mg/kg IV</td></tr>
-<tr><td>Sedation</td><td>Romifidine</td><td>0.08 mg/kg IV</td></tr>
-<tr><td>Analgesie</td><td>Morphine</td><td>0.1 mg/kg IV</td></tr>
-<tr><td>+ ALR</td><td>Lidocaine intra-testiculaire</td><td></td></tr>
+<tr><th>Etape</th><th>Molecule</th><th>Dose</th><th>Presentation</th></tr>
+<tr><td>J-20 min</td><td>ACP</td><td>0.01 mg/kg IV</td><td>5 mg/mL (Calmivet)</td></tr>
+<tr><td>Sedation</td><td>Romifidine</td><td>0.08 mg/kg IV</td><td>10 mg/mL (Sedivet)</td></tr>
+<tr><td>Analgesie</td><td>Morphine</td><td>0.1 mg/kg IV</td><td>10 mg/mL</td></tr>
+<tr><td>+ ALR</td><td>Lidocaine intra-testiculaire</td><td></td><td>20 mg/mL (Lurocaine 2%)</td></tr>
 </table></div>`}
 ]},
 
@@ -637,17 +638,17 @@ const FICHES=[
 <h4>ATB terrain</h4>
 <div class="table-wrap"><table>
 <tr><th>Situation</th><th>ATB</th><th>Posologie</th></tr>
-<tr><td><strong>Plaie simple</strong></td><td>TMP-sulfa PO</td><td>30 mg/kg q12h</td></tr>
-<tr><td><strong>Plaie contaminee</strong></td><td>Penicilline procaine IM + gentamicine IV</td><td>22 000 UI/kg q12h + 6.6 mg/kg q24h</td></tr>
-<tr><td><strong>Communication synoviale</strong></td><td>Penicilline + gentamicine systemique + <strong>gentamicine intra-articulaire</strong></td><td>150-250 mg IA + lavage articulaire</td></tr>
-<tr><td><strong>Plaie perforante pied</strong></td><td>Penicilline + gentamicine + <strong>metronidazole</strong></td><td>15-25 mg/kg PO q8h (anaer.)</td></tr>
+<tr><td><strong>Plaie simple</strong></td><td>TMP-sulfa PO (cp 400/80 mg, Sultrian)</td><td>30 mg/kg q12h</td></tr>
+<tr><td><strong>Plaie contaminee</strong></td><td>Penicilline procaine IM (fl. 300 000 UI/mL, Depocilline) + gentamicine IV (fl. 100 mg/mL)</td><td>22 000 UI/kg q12h + 6.6 mg/kg q24h</td></tr>
+<tr><td><strong>Communication synoviale</strong></td><td>Penicilline + gentamicine systemique + <strong>gentamicine intra-articulaire</strong> (fl. 100 mg/mL)</td><td>150-250 mg IA + lavage articulaire</td></tr>
+<tr><td><strong>Plaie perforante pied</strong></td><td>Penicilline + gentamicine + <strong>metronidazole</strong> (cp 500 mg, Flagyl)</td><td>15-25 mg/kg PO q8h (anaer.)</td></tr>
 </table></div>
 <h4>Anti-inflammatoires</h4>
 <div class="table-wrap"><table>
 <tr><th>Molecule</th><th>Dose</th><th>Notes</th></tr>
-<tr><td><strong>Flunixine</strong></td><td>1.1 mg/kg IV q12-24h</td><td>Reference. Endotoxemie : 0.25 mg/kg q8h</td></tr>
-<tr><td><strong>Phenylbutazone</strong></td><td>2.2-4.4 mg/kg PO/IV q12h</td><td>Anti-inflamm. locomoteur ++</td></tr>
-<tr><td><strong>Meloxicam</strong></td><td>0.6 mg/kg PO q24h</td><td>Moindre toxicite GI</td></tr>
+<tr><td><strong>Flunixine</strong> (fl. 50 mg/mL, Finadyne)</td><td>1.1 mg/kg IV q12-24h</td><td>Reference. Endotoxemie : 0.25 mg/kg q8h</td></tr>
+<tr><td><strong>Phenylbutazone</strong> (fl. 200 mg/mL IV ; sachets 1g PO)</td><td>2.2-4.4 mg/kg PO/IV q12h</td><td>Anti-inflamm. locomoteur ++</td></tr>
+<tr><td><strong>Meloxicam</strong> (fl. 20 mg/mL, Metacam ; granules 15 mg/g PO)</td><td>0.6 mg/kg PO q24h</td><td>Moindre toxicite GI</td></tr>
 </table></div>
 <div class="card warn"><strong>SAT/VAT :</strong> si non vaccine ou inconnu &rarr; SAT 1500-3000 UI IM + 1ere vaccination tetanos. Si vaccine &gt; 1 an &rarr; rappel.</div>`}
 ]},
@@ -685,22 +686,22 @@ const FICHES=[
 <ul><li>Leger : desorientation, protrusion langue, star gazing</li>
 <li>Grave : convulsions, decubitus, vocalisations (barker foal)</li></ul>
 <h4>Traitement</h4>
-<ul><li>Convulsions : <strong>diazepam</strong> 0.1-0.2 mg/kg IV</li>
+<ul><li>Convulsions : <strong>diazepam</strong> 0.1-0.2 mg/kg IV (5 mg/mL, Valium)</li>
 <li><strong>Technique de Madigan</strong> (squeezing) : poulains &lt; 2j</li>
 <li>Taux de survie : <strong>80%</strong></li></ul>`},
 {t:"Septicemie neonatale",c:`<ul><li>Principalement <strong>gram negatifs</strong> (E. coli, Actinobacillus)</li>
 <li>Apparition : <strong>24-72h</strong> de vie</li>
 <li>Fievre pas toujours presente (souvent hypothermie)</li></ul>
 <h4>Traitement</h4>
-<ul><li>1ere intention : <strong>penicilline + aminoside</strong> (gentamicine)</li>
-<li>Alternative : ceftiofur</li></ul>
+<ul><li>1ere intention : <strong>penicilline Na</strong> 22 000 UI/kg IV q6h (penicilline sodique) + <strong>amikacine</strong> 25 mg/kg IV q24h (250 mg/mL)</li>
+<li>Alternative : <strong>ceftiofur</strong> 5 mg/kg IV/IM q12h (50 mg/mL, Excenel)</li></ul>
 <p>Survie : <strong>&lt; 60%</strong> &mdash; urgence absolue</p>`},
 {t:"Reanimation ABCD",c:`<div class="table-wrap"><table>
 <tr><th>Etape</th><th>Action</th><th>Details</th></tr>
 <tr><td><strong>A</strong></td><td>Airway</td><td>Degager VRS, poire aspiration</td></tr>
 <tr><td><strong>B</strong></td><td>Breathing</td><td>Bouche a naseau 10-20/min</td></tr>
 <tr><td><strong>C</strong></td><td>Cardiac</td><td>Massage 90-120/min, decubitus lateral</td></tr>
-<tr><td><strong>D</strong></td><td>Drugs</td><td>Adrenaline 0.01-0.02 mg/kg IV</td></tr>
+<tr><td><strong>D</strong></td><td>Drugs</td><td>Adrenaline 0.01-0.02 mg/kg IV (1 mg/mL)</td></tr>
 </table></div>`},
 {t:"Fluidotherapie & signes d'alerte",c:`<ul><li>Bolus choc : <strong>RL 20 mL/kg sur 10-20 min</strong></li>
 <li>Entretien : <strong>80-100 mL/kg/jour</strong></li>
@@ -766,7 +767,7 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 <li>Auscultation : rythme <strong>irregulierement irregulier</strong>, B4 absent</li>
 <li>ECG : pas d'onde P, ondes f, R-R irreguliers</li></ul>
 <h4>Traitement</h4>
-<ul><li><strong>Quinidine</strong> PO : 22 mg/kg q2h (reussite ~85%)</li>
+<ul><li><strong>Quinidine sulfate</strong> PO : 22 mg/kg q2h par SNG (poudre, diluer dans eau) (reussite ~85%)</li>
 <li>Cardioversion electrique transveineuse : alternative</li></ul>
 <p>FA isolee traitee : bon retour competition</p>`},
 {t:"IC & aptitude sportive",c:`<div class="table-wrap"><table>
@@ -776,8 +777,8 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 <h4>Traitement IC</h4>
 <div class="table-wrap"><table>
 <tr><th>Molecule</th><th>Dose</th></tr>
-<tr><td><strong>Furosemide</strong></td><td>1-2 mg/kg IV</td></tr>
-<tr><td><strong>Digoxine</strong></td><td>0.011 mg/kg q12h PO</td></tr>
+<tr><td><strong>Furosemide</strong></td><td>1-2 mg/kg IV (50 mg/mL, Dimazon)</td></tr>
+<tr><td><strong>Digoxine</strong></td><td>0.011 mg/kg q12h PO (cp 0.25 mg, Digoxine Nativelle)</td></tr>
 </table></div>
 <h4>Aptitude sportive</h4>
 <div class="table-wrap"><table>
@@ -822,9 +823,9 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 <p><strong>Mesures hygieniques fondamentales</strong> : litiere non poussieureuse, foin mouille, paddock</p>
 <div class="table-wrap"><table>
 <tr><th>Molecule</th><th>Dose</th><th>Voie</th></tr>
-<tr><td>Dexamethasone</td><td>0.05-0.1 mg/kg</td><td>PO/IV</td></tr>
-<tr><td>Beclometasone</td><td>500 ug BID</td><td>Aerosol</td></tr>
-<tr><td><strong>Clenbuterol</strong></td><td>0.8-3.2 ug/kg BID</td><td>PO (10j)</td></tr>
+<tr><td>Dexamethasone</td><td>0.05-0.1 mg/kg</td><td>PO/IV (2 mg/mL, Dexadreson)</td></tr>
+<tr><td>Beclometasone</td><td>500 ug BID</td><td>Aerosol (Equine Haler)</td></tr>
+<tr><td><strong>Clenbuterol</strong></td><td>0.8-3.2 ug/kg BID</td><td>PO sirop 25 ug/mL (Ventipulmin) (10j)</td></tr>
 </table></div>`},
 {t:"Infections VRS",c:`<h4>Gourme (S. equi)</h4>
 <ul><li>Fievre, toux, jetage mucopurulent, ganglions douloureux</li>
@@ -835,7 +836,7 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 <h4>Arterite virale</h4>
 <p>Fievre, oedemes, <strong>avortement 50-70%</strong></p>`},
 {t:"Pneumonies & poches gutturales",c:`<h4>Rhodococcose (poulains 1.5-12 mois)</h4>
-<p><strong>Rifampicine</strong> 5-10 mg/kg BID + <strong>Azithromycine</strong> 10 mg/kg SID, 5-6 semaines</p>
+<p><strong>Rifampicine</strong> 5-10 mg/kg BID PO (gelules 300 mg) + <strong>Azithromycine</strong> 10 mg/kg SID PO (cp 250 mg), 5-6 semaines</p>
 <h4>Mycose poches gutturales</h4>
 <ul><li>Risque carotide interne = <strong>hemorragie fatale</strong></li>
 <li>TTT : enilconazole + <strong>ligature carotide commune</strong></li></ul>`},
@@ -875,7 +876,7 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 </table></div>`},
 {t:"Traitement & prevention",c:`<div class="table-wrap"><table>
 <tr><th></th><th>ESGD</th><th>EGGD</th></tr>
-<tr><td>1ere intention</td><td>Omeprazole 4 mg/kg PO q24h</td><td>Omeprazole + <strong>Sucralfate 12 mg/kg q12h</strong></td></tr>
+<tr><td>1ere intention</td><td>Omeprazole 4 mg/kg PO q24h (pate 370 mg/g, GastroGard)</td><td>Omeprazole + <strong>Sucralfate 12 mg/kg q12h</strong> (poudre/cp 1g, Ulcar)</td></tr>
 <tr><td>Duree</td><td><strong>3 semaines</strong> min</td><td><strong>4 semaines</strong> min</td></tr>
 <tr><td>Controle</td><td colspan="2">Gastroscopie avant arret</td></tr>
 </table></div>
@@ -1144,10 +1145,10 @@ FC adulte repos : <strong>28-44 bpm</strong> | Nouveau-ne : <strong>80-120 bpm</
 <h4>Traitement</h4>
 <div class="table-wrap"><table>
 <tr><th>Type ulcere</th><th>Traitement</th></tr>
-<tr><td><strong>Superficiel</strong></td><td>ATB topique (chloramphenicol ou tobramycine q6-8h) + <strong>atropine 1%</strong> q12-24h (cycloplegique = analgesie) + AINS systemique (flunixine 0.5-1.1 mg/kg)</td></tr>
+<tr><td><strong>Superficiel</strong></td><td>ATB topique : <strong>chloramphenicol 1%</strong> collyre (Ophtalon) ou <strong>tobramycine 0.3%</strong> collyre (Tobrex) q6-8h + <strong>atropine 1%</strong> collyre q12-24h (cycloplegique = analgesie) + AINS systemique : <strong>flunixine</strong> 0.5-1.1 mg/kg IV (fl. 50 mg/mL, Finadyne)</td></tr>
 <tr><td><strong>Superficiel ne guerit pas</strong></td><td>Keratotomie en grille ou keratectomie superficielle</td></tr>
 <tr><td><strong>Profond (&gt;50% stroma)</strong></td><td>ATB topique renforcee q1-2h + greffe conjonctivale ou amniotique. <strong>REFERER</strong></td></tr>
-<tr><td><strong>Melting</strong> (collagenase+)</td><td><strong>Urgence</strong> : serum autologue q1h (anti-collagenase) + ATB topique fortifie + EDTA topique</td></tr>
+<tr><td><strong>Melting</strong> (collagenase+)</td><td><strong>Urgence</strong> : serum autologue q1h (anti-collagenase, preparer a partir de sang centrifuge) + ATB topique fortifie (tobramycine 0.3% ou cefazoline reconst. 33 mg/mL) + EDTA 0.05% topique</td></tr>
 <tr><td><strong>Descemetocele</strong></td><td>Fluoresceine - au centre, + en peripherie. <strong>Chirurgie urgente</strong></td></tr>
 </table></div>
 <div class="card warn"><strong>Tres net, tres rond = infection bacterienne/fongique</strong> &rarr; prelever avant ATB !<br>
@@ -1164,11 +1165,11 @@ JAMAIS de corticoides topiques si ulcere (aggrave ++)</div>`},
 <h4>Traitement</h4>
 <div class="table-wrap"><table>
 <tr><th>Classe</th><th>Molecule</th><th>Posologie</th></tr>
-<tr><td><strong>Mydriatique</strong></td><td>Atropine 1% topique</td><td>q6-12h jusqu'a mydriase, puis q24-48h. Previent synechies + analgesie</td></tr>
-<tr><td><strong>AINS systemique</strong></td><td>Flunixine meglumine</td><td>1.1 mg/kg IV q12-24h (anti-inflamm. oculaire ++)</td></tr>
-<tr><td><strong>AINS topique</strong></td><td>Diclofenac / ketorolac</td><td>q6-8h (si PAS d'ulcere)</td></tr>
-<tr><td><strong>Corticoide topique</strong></td><td>Dexamethasone 0.1%</td><td>q6h (<strong>SI PAS d'ulcere corneen !</strong>)</td></tr>
-<tr><td><strong>Corticoide systémique</strong></td><td>Dexamethasone</td><td>0.05-0.2 mg/kg IV/IM si severe</td></tr>
+<tr><td><strong>Mydriatique</strong></td><td>Atropine 1% collyre</td><td>q6-12h jusqu'a mydriase, puis q24-48h. Previent synechies + analgesie</td></tr>
+<tr><td><strong>AINS systemique</strong></td><td>Flunixine meglumine (fl. 50 mg/mL, Finadyne)</td><td>1.1 mg/kg IV q12-24h (anti-inflamm. oculaire ++)</td></tr>
+<tr><td><strong>AINS topique</strong></td><td>Diclofenac 0.1% collyre (Voltarene Ophta) / ketorolac 0.5% collyre</td><td>q6-8h (si PAS d'ulcere)</td></tr>
+<tr><td><strong>Corticoide topique</strong></td><td>Dexamethasone 0.1% collyre (Maxidex)</td><td>q6h (<strong>SI PAS d'ulcere corneen !</strong>)</td></tr>
+<tr><td><strong>Corticoide systémique</strong></td><td>Dexamethasone (fl. 4 mg/mL, Dexadreson)</td><td>0.05-0.2 mg/kg IV/IM si severe</td></tr>
 </table></div>
 <div class="card warn"><strong>ERU (uveite recurrente equine / moon blindness) :</strong> cause #1 de cecite chez le cheval. Episodes recurrents d'uveite &rarr; cataracte, synechies, phthisis. Leptospires ++. Implant cyclosporine en refere.</div>`},
 {t:"CAT Glaucome & autres",c:`<h4>Glaucome</h4>
